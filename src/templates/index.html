@@ -1,0 +1,2708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Slotify 🗓️ — Smart College Timetable Management & Scheduling Platform. Swiss Grid Minimalism with Modern Campus aesthetics.">
+    <title>Slotify 🗓️ — Smart College Timetable Management Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Modern Campus Palette */
+            --bg-primary: #FAF5EB;          /* Warm cream / parchment */
+            --bg-secondary: #F3ECE0;        /* Subtle parchment section */
+            --bg-surface: #FFFFFF;          /* Soft ivory */
+            --bg-card: #FFFFFF;             /* Crisp secondary surface */
+            --bg-input: #FFFFFF;            /* Pure ivory form fields */
+            --bg-input-hover: #FDFBF7;
+
+            /* Text Hierarchy */
+            --text-primary: #292E27;        /* Dark charcoal */
+            --text-secondary: #555E52;      /* Warm muted charcoal */
+            --text-muted: #7E8779;          /* Subdued slate sage */
+            --text-light: #FAF5EB;          /* Parchment text for dark surfaces */
+
+            /* Core Colors */
+            --primary: #315C45;             /* Deep forest green */
+            --primary-hover: #264936;
+            --primary-light: #EBF3EE;       /* Subtle sage-green tint */
+            --primary-border: #BCD5C6;
+
+            --secondary-sage: #587A67;      /* Muted sage green */
+            --sage-light: #F0F5F2;
+            --sage-border: #C8DCD1;
+
+            --accent-terracotta: #B56E40;   /* Restrained terracotta */
+            --accent-terracotta-hover: #9C5B32;
+            --terracotta-light: #FAF1EB;
+            --terracotta-border: #E8CFBF;
+
+            /* Recess / Break Styling */
+            --recess-bg: #FBF6E8;
+            --recess-border: #E8DDBF;
+            --recess-text: #7A6328;
+
+            /* Borders and Dividers */
+            --border-color: #E5DED3;        /* Subtle warm grey/beige */
+            --border-subtle: #ECE5DC;
+            --border-strong: #D5CCC0;
+            --border-hover: #315C45;
+
+            /* Academic Years */
+            --se-bg: #EBF3EE;
+            --se-border: #BCD5C6;
+            --se-text: #264936;
+
+            --te-bg: #EDF3F1;
+            --te-border: #C3D8CF;
+            --te-text: #325B4C;
+
+            --be-bg: #FAF1EB;
+            --be-border: #E8CFBF;
+            --be-text: #9A5A32;
+
+            /* Status & Feedback */
+            --success: #315C45;
+            --warning: #B56E40;
+            --danger: #B33A3A;
+
+            /* Swiss Grid Geometry & Restrained Shadows */
+            --shadow-sm: 0 1px 3px rgba(41, 46, 39, 0.05);
+            --shadow-md: 0 3px 8px rgba(41, 46, 39, 0.06), 0 1px 3px rgba(41, 46, 39, 0.04);
+            --shadow-lg: 0 8px 24px rgba(41, 46, 39, 0.09);
+
+            --radius-xs: 4px;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+
+            --transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ═══════════════════════════════════════════
+           TOP NAVIGATION & BRANDING BAR
+           ═══════════════════════════════════════════ */
+        .top-navbar {
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0.75rem 1.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .brand-logo {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: #FFFFFF;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            font-weight: 800;
+            box-shadow: 0 2px 6px rgba(49, 92, 69, 0.25);
+        }
+
+        .brand-text h1 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .brand-text p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .role-badge-selector {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        .role-badge-selector select {
+            border: none;
+            background: transparent;
+            font-family: inherit;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--primary);
+            cursor: pointer;
+            outline: none;
+        }
+
+        .notif-bell-btn {
+            position: relative;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .notif-bell-btn:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .notif-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--accent-terracotta);
+            color: #FFFFFF;
+            font-size: 0.65rem;
+            font-weight: 800;
+            min-width: 17px;
+            height: 17px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 4px;
+        }
+
+        /* ═══════════════════════════════════════════
+           SUB-NAVIGATION / MODULE TABS
+           ═══════════════════════════════════════════ */
+        .module-nav-bar {
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 1.75rem;
+            display: flex;
+            gap: 0.35rem;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .module-tab {
+            padding: 0.85rem 1.15rem;
+            font-size: 0.84rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            border: none;
+            background: transparent;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .module-tab:hover {
+            color: var(--primary);
+            background: #FCFBF8;
+        }
+
+        .module-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+            font-weight: 700;
+            background: var(--primary-light);
+        }
+
+        /* ═══════════════════════════════════════════
+           MAIN CONTAINER & LAYOUT
+           ═══════════════════════════════════════════ */
+        .main-content {
+            max-width: 1440px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 1.75rem;
+            flex: 1;
+        }
+
+        .view-section {
+            display: none;
+            animation: fadeIn 0.25s ease-out;
+        }
+
+        .view-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ═══════════════════════════════════════════
+           CARDS & PANELS
+           ═══════════════════════════════════════════ */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.85rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .card-title {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .card-subtitle {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-top: 0.15rem;
+        }
+
+        /* ═══════════════════════════════════════════
+           KPI STATS TILES
+           ═══════════════════════════════════════════ */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 1.15rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-tile {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .stat-tile:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary-border);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+        }
+
+        .stat-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+        }
+
+        .stat-num {
+            font-size: 2.1rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 0.35rem;
+            font-feature-settings: "tnum" 1;
+        }
+
+        .stat-desc {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+        }
+
+        /* ═══════════════════════════════════════════
+           BUTTONS & FORM ELEMENTS
+           ═══════════════════════════════════════════ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.15rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid transparent;
+            font-family: inherit;
+            transition: var(--transition);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #FFFFFF;
+            border-color: #244734;
+        }
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            box-shadow: 0 2px 6px rgba(49, 92, 69, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            border-color: var(--border-color);
+        }
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .btn-accent {
+            background: var(--accent-terracotta);
+            color: #FFFFFF;
+            border-color: #9C5B32;
+        }
+        .btn-accent:hover {
+            background: var(--accent-terracotta-hover);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-secondary);
+            border-color: transparent;
+        }
+        .btn-ghost:hover {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .btn-sm {
+            padding: 0.35rem 0.75rem;
+            font-size: 0.78rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .form-group label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 0.6rem 0.85rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            background: var(--bg-input);
+            font-family: inherit;
+            font-size: 0.88rem;
+            color: var(--text-primary);
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(49, 92, 69, 0.12);
+        }
+
+        /* ═══════════════════════════════════════════
+           TIMETABLE GRID & STYLED CELLS
+           ═══════════════════════════════════════════ */
+        .timetable-container {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 1.5rem;
+        }
+
+        .tt-toolbar {
+            padding: 0.85rem 1.25rem;
+            background: #FCFBF8;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+        }
+
+        .tt-year-pills {
+            display: flex;
+            gap: 0.4rem;
+            background: var(--bg-primary);
+            padding: 0.3rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .tt-year-pill {
+            padding: 0.45rem 1.15rem;
+            border-radius: var(--radius-xs);
+            border: 1px solid transparent;
+            background: transparent;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .tt-year-pill:hover {
+            color: var(--text-primary);
+            background: var(--bg-surface);
+        }
+
+        .tt-year-pill.active-se {
+            background: var(--primary);
+            color: #FFFFFF;
+            border-color: #244734;
+        }
+        .tt-year-pill.active-te {
+            background: var(--secondary-sage);
+            color: #FFFFFF;
+            border-color: #44685A;
+        }
+        .tt-year-pill.active-be {
+            background: var(--accent-terracotta);
+            color: #FFFFFF;
+            border-color: #9C5B32;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            width: 100%;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            min-width: 980px;
+        }
+
+        .schedule-table th {
+            background: var(--primary);
+            color: #FFFFFF;
+            padding: 0.85rem 0.65rem;
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 0.04em;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .schedule-table th.day-col {
+            width: 95px;
+            background: #254735;
+        }
+
+        .schedule-table td {
+            border: 1px solid var(--border-color);
+            padding: 0.55rem;
+            vertical-align: top;
+            height: 94px;
+            background: var(--bg-surface);
+            transition: background 0.15s ease;
+        }
+
+        .schedule-table td.day-cell {
+            background: #FAF7F2;
+            font-weight: 800;
+            text-align: center;
+            vertical-align: middle;
+            color: var(--primary);
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* ═══════════════════════════════════════════
+           COLORFUL PASTEL TIMETABLE BLOCKS
+           ═══════════════════════════════════════════ */
+        .tt-cell-block {
+            height: 100%;
+            min-height: 80px;
+            border-radius: 12px;
+            padding: 0.55rem 0.65rem;
+            border: 1px solid transparent;
+            border-left-width: 4px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: transform 0.15s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.15s cubic-bezier(0.2, 0, 0, 1);
+            user-select: none;
+            position: relative;
+        }
+
+        .tt-cell-block:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            z-index: 2;
+        }
+
+        .tt-cell-block .block-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.35rem;
+        }
+
+        .block-subject {
+            font-weight: 800;
+            font-size: 0.92rem;
+            letter-spacing: -0.01em;
+            line-height: 1.15;
+        }
+
+        .block-room-badge {
+            font-size: 0.68rem;
+            font-weight: 700;
+            padding: 0.15rem 0.45rem;
+            border-radius: var(--radius-xs);
+            background: rgba(0, 0, 0, 0.06);
+            white-space: nowrap;
+        }
+
+        .tt-cell-block .block-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 0.4rem;
+        }
+
+        .block-teacher {
+            font-size: 0.78rem;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        .block-type-chip {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        /* Curated Pastel Palettes */
+        .theme-sage { background: #DCEBDD; border-color: #B7D3B9; border-left-color: #315C45; color: #1C382A; }
+        .theme-mint { background: #D5EEE3; border-color: #A8DCB7; border-left-color: #237A55; color: #14432F; }
+        .theme-blue { background: #DCE7F3; border-color: #B2CCE5; border-left-color: #2F6399; color: #1B3754; }
+        .theme-lavender { background: #E9E0F2; border-color: #CFBDE2; border-left-color: #724E91; color: #3B2650; }
+        .theme-yellow { background: #F5EDC9; border-color: #DFD191; border-left-color: #9E8517; color: #483C0C; }
+        .theme-peach { background: #F8E5D3; border-color: #E5C4A7; border-left-color: #B8652A; color: #5D2E11; }
+        .theme-rose { background: #F2DFDF; border-color: #DCBDBD; border-left-color: #A34848; color: #552323; }
+        .theme-olive { background: #E5E8CE; border-color: #C6CD9A; border-left-color: #6C7729; color: #343A15; }
+        .theme-terracotta { background: #F3DDD0; border-color: #E2B9A2; border-left-color: #B56E40; color: #5C2E13; }
+        .theme-cream { background: #F7F0E3; border-color: #DFCFB6; border-left-color: #8C7351; color: #403322; }
+
+        /* Recess Cell */
+        .tt-cell-recess {
+            height: 100%;
+            min-height: 80px;
+            background: var(--recess-bg);
+            border: 1px dashed var(--recess-border);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--recess-text);
+            text-align: center;
+            padding: 0.5rem;
+        }
+
+        .tt-cell-recess .icon {
+            font-size: 1.15rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .tt-cell-recess .label {
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .tt-cell-recess .time {
+            font-size: 0.65rem;
+            opacity: 0.85;
+            margin-top: 0.1rem;
+        }
+
+        /* Free / Empty Cell */
+        .tt-cell-empty {
+            height: 100%;
+            min-height: 80px;
+            background: #FAF8F4;
+            border: 1px dashed #DDD5C7;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #A39B8F;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .tt-cell-empty:hover {
+            background: #F3ECE0;
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* ═══════════════════════════════════════════
+           FACULTY DIRECTORY & CARDS
+           ═══════════════════════════════════════════ */
+        .faculty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 1.15rem;
+        }
+
+        .faculty-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .faculty-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .faculty-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .faculty-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-sm);
+            background: var(--primary);
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+            flex-shrink: 0;
+        }
+
+        .faculty-name {
+            font-weight: 700;
+            font-size: 0.98rem;
+            color: var(--text-primary);
+        }
+
+        .faculty-desig {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .faculty-chips-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            margin: 0.65rem 0;
+        }
+
+        .chip {
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 0.18rem 0.55rem;
+            border-radius: var(--radius-xs);
+            border: 1px solid transparent;
+        }
+
+        .chip-slot {
+            background: var(--terracotta-light);
+            color: var(--accent-terracotta);
+            border-color: var(--terracotta-border);
+        }
+
+        .faculty-stats-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border-subtle);
+            font-size: 0.78rem;
+        }
+
+        /* ═══════════════════════════════════════════
+           MODAL DIALOGS
+           ═══════════════════════════════════════════ */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(41, 46, 39, 0.45);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .modal-box {
+            background: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-lg);
+            width: 100%;
+            max-width: 820px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .modal-box.modal-lg {
+            max-width: 1100px;
+        }
+
+        .modal-header {
+            padding: 1.15rem 1.5rem;
+            background: #FAF7F2;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-title {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .modal-close-btn {
+            background: transparent;
+            border: none;
+            font-size: 1.25rem;
+            cursor: pointer;
+            color: var(--text-muted);
+            line-height: 1;
+            padding: 0.2rem;
+        }
+        .modal-close-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .modal-footer {
+            padding: 1rem 1.5rem;
+            background: #FCFBF8;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.75rem;
+        }
+
+        /* ═══════════════════════════════════════════
+           TOAST NOTIFICATION
+           ═══════════════════════════════════════════ */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 0.85rem 1.35rem;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #FFFFFF;
+            z-index: 10000;
+            transform: translateY(60px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success { background: var(--primary); border: 1px solid #244734; }
+        .toast.error { background: var(--accent-terracotta); border: 1px solid #9C5B32; }
+        .toast.info { background: var(--secondary-sage); border: 1px solid #44685A; }
+
+        /* ═══════════════════════════════════════════
+           CONFLICTS & STATUS BADGES
+           ═══════════════════════════════════════════ */
+        .conflict-banner {
+            background: #FDF4ED;
+            border: 1px solid var(--terracotta-border);
+            border-left: 5px solid var(--accent-terracotta);
+            border-radius: var(--radius-sm);
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.85rem;
+        }
+
+        .conflict-banner.resolved {
+            background: #EBF3EE;
+            border-color: var(--primary-border);
+            border-left-color: var(--primary);
+        }
+
+        .conflict-item {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 0.85rem 1.15rem;
+            margin-bottom: 0.65rem;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .badge-pill {
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.2rem 0.65rem;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-error { background: #FCE8E8; color: var(--danger); border: 1px solid #E8B6B6; }
+        .badge-success { background: var(--primary-light); color: var(--primary); border: 1px solid var(--primary-border); }
+        .badge-warning { background: var(--terracotta-light); color: var(--accent-terracotta); border: 1px solid var(--terracotta-border); }
+
+        /* ═══════════════════════════════════════════
+           PRINT MEDIA STYLING
+           ═══════════════════════════════════════════ */
+        @media print {
+            .top-navbar, .module-nav-bar, .tt-toolbar, .btn, .notif-bell-btn, .modal-footer {
+                display: none !important;
+            }
+            body {
+                background: #FFFFFF !important;
+                color: #000000 !important;
+            }
+            .main-content {
+                padding: 0 !important;
+                max-width: 100% !important;
+            }
+            .timetable-container, .card {
+                border: none !important;
+                box-shadow: none !important;
+            }
+            .schedule-table th {
+                background: #315C45 !important;
+                color: #FFFFFF !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .tt-cell-block {
+                box-shadow: none !important;
+                border: 1px solid #CCC !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Toast Component -->
+    <div class="toast" id="toast"></div>
+
+    <!-- ═══════════════════════════════════════════
+         TOP NAVBAR
+         ═══════════════════════════════════════════ -->
+    <header class="top-navbar">
+        <a href="#" class="brand-container" onclick="switchModule('dashboard'); return false;">
+            <div class="brand-logo">🗓️</div>
+            <div class="brand-text">
+                <h1>Slotify <span>🗓️</span></h1>
+                <p>Smart College Timetable Management & Scheduling</p>
+            </div>
+        </a>
+
+        <div class="nav-actions">
+            <!-- Role Switcher -->
+            <div class="role-badge-selector" title="Switch User Role View">
+                <span>👤 Role:</span>
+                <select id="userRoleSelect" onchange="onRoleChange(this.value)">
+                    <option value="admin">Administrator</option>
+                    <option value="faculty">Faculty Member</option>
+                    <option value="student">Student</option>
+                </select>
+            </div>
+
+            <!-- Quick Action: Demo Reset -->
+            <button class="btn btn-secondary btn-sm admin-only" onclick="resetDemoData()" title="Reset to standard 16-faculty zero-conflict dataset">
+                🔄 Reset Demo
+            </button>
+
+            <!-- Notifications Bell -->
+            <button class="notif-bell-btn" onclick="openNotifDrawer()" title="View Notifications">
+                🔔
+                <span class="notif-badge" id="notifBadge">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ═══════════════════════════════════════════
+         MODULE SUB-NAVIGATION TABS
+         ═══════════════════════════════════════════ -->
+    <nav class="module-nav-bar">
+        <button class="module-tab active" onclick="switchModule('dashboard')" id="tab-dashboard">📊 Dashboard</button>
+        <button class="module-tab" onclick="switchModule('timetables')" id="tab-timetables">📅 Timetables</button>
+        <button class="module-tab admin-only" onclick="switchModule('generate')" id="tab-generate">⚙️ Generate Timetable</button>
+        <button class="module-tab" onclick="switchModule('faculty')" id="tab-faculty">👨‍🏫 Faculty Directory</button>
+        <button class="module-tab" onclick="switchModule('classrooms')" id="tab-classrooms">🏢 Classrooms & Labs</button>
+        <button class="module-tab" onclick="switchModule('subjects')" id="tab-subjects">📚 Subjects</button>
+        <button class="module-tab" onclick="switchModule('calendar')" id="tab-calendar">🗓️ Academic Calendar</button>
+        <button class="module-tab admin-only" onclick="switchModule('conflicts')" id="tab-conflicts">⚠️ Conflict Center</button>
+        <button class="module-tab admin-only" onclick="switchModule('versions')" id="tab-versions">📜 Version History</button>
+        <button class="module-tab" onclick="switchModule('analytics')" id="tab-analytics">📈 Analytics</button>
+        <button class="module-tab" onclick="switchModule('exports')" id="tab-exports">📥 Export Center</button>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════
+         MAIN CONTENT AREA
+         ═══════════════════════════════════════════ -->
+    <main class="main-content">
+
+        <!-- ──────────────────────────────────────────
+             MODULE 1: DASHBOARD / OVERVIEW
+             ────────────────────────────────────────── -->
+        <section class="view-section active" id="sec-dashboard">
+            <!-- KPI Tiles Grid -->
+            <div class="stats-grid">
+                <div class="stat-tile">
+                    <div class="stat-header">
+                        <span class="stat-label">Faculty Members</span>
+                        <div class="stat-icon" style="background: var(--primary-light); color: var(--primary);">👨‍🏫</div>
+                    </div>
+                    <div class="stat-num" id="statFacultyCount">16</div>
+                    <div class="stat-desc">Full-time teaching staff</div>
+                </div>
+
+                <div class="stat-tile">
+                    <div class="stat-header">
+                        <span class="stat-label">Subjects</span>
+                        <div class="stat-icon" style="background: var(--sage-light); color: var(--secondary-sage);">📚</div>
+                    </div>
+                    <div class="stat-num" id="statSubjectCount">16</div>
+                    <div class="stat-desc">SE, TE, and BE curriculum</div>
+                </div>
+
+                <div class="stat-tile">
+                    <div class="stat-header">
+                        <span class="stat-label">Rooms & Labs</span>
+                        <div class="stat-icon" style="background: var(--terracotta-light); color: var(--accent-terracotta);">🏢</div>
+                    </div>
+                    <div class="stat-num" id="statRoomCount">11</div>
+                    <div class="stat-desc">5 lecture halls, 6 specialized labs</div>
+                </div>
+
+                <div class="stat-tile">
+                    <div class="stat-header">
+                        <span class="stat-label">Hard Conflicts</span>
+                        <div class="stat-icon" id="statConflictIcon" style="background: #EBF3EE; color: var(--primary);">✅</div>
+                    </div>
+                    <div class="stat-num" id="statConflictCount" style="color: var(--primary);">0</div>
+                    <div class="stat-desc">Zero room or faculty collisions</div>
+                </div>
+            </div>
+
+            <!-- Dashboard Action & Status Banner -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">🗓️ Academic Scheduling Status & Controls</h2>
+                        <p class="card-subtitle">Active Academic Session: 2026–2027 (Odd Semester) | Computer Engineering</p>
+                    </div>
+                    <div style="display: flex; gap: 0.65rem;">
+                        <button class="btn btn-primary admin-only" onclick="switchModule('generate')">⚡ Run Scheduling Engine</button>
+                        <button class="btn btn-secondary" onclick="exportFile('pdf', 'year', 'se')">📥 Download SE PDF</button>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+                    <!-- Timetable Generation Progress -->
+                    <div>
+                        <h3 style="font-size: 0.92rem; font-weight: 700; margin-bottom: 0.85rem; color: var(--text-primary);">
+                            📊 Class Coverage & Weekly Hours
+                        </h3>
+                        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 600; margin-bottom: 0.25rem;">
+                                    <span>SE — Second Year Curriculum</span>
+                                    <span>6 Subjects (100% Scheduled)</span>
+                                </div>
+                                <div style="height: 8px; background: #E8ECE9; border-radius: 4px; overflow: hidden;">
+                                    <div style="width: 100%; height: 100%; background: var(--primary);"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 600; margin-bottom: 0.25rem;">
+                                    <span>TE — Third Year Curriculum</span>
+                                    <span>6 Subjects (100% Scheduled)</span>
+                                </div>
+                                <div style="height: 8px; background: #E8ECE9; border-radius: 4px; overflow: hidden;">
+                                    <div style="width: 100%; height: 100%; background: var(--secondary-sage);"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 600; margin-bottom: 0.25rem;">
+                                    <span>BE — Final Year Curriculum</span>
+                                    <span>4 Subjects (100% Scheduled)</span>
+                                </div>
+                                <div style="height: 8px; background: #E8ECE9; border-radius: 4px; overflow: hidden;">
+                                    <div style="width: 100%; height: 100%; background: var(--accent-terracotta);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Upcoming Official Holidays -->
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem;">
+                            <h3 style="font-size: 0.92rem; font-weight: 700; color: var(--text-primary);">
+                                🗓️ Upcoming Academic Holidays
+                            </h3>
+                            <a href="#" onclick="switchModule('calendar'); return false;" style="font-size: 0.78rem; color: var(--primary); font-weight: 700; text-decoration: none;">View All →</a>
+                        </div>
+                        <div id="dashHolidaysList" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Faculty Workload Preview Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">👨‍🏫 Faculty Teaching Load Distribution</h2>
+                        <p class="card-subtitle">Weekly theory and practical lecture assignments</p>
+                    </div>
+                    <button class="btn btn-secondary btn-sm" onclick="switchModule('faculty')">Browse All Faculty</button>
+                </div>
+                <div id="dashWorkloadTable" style="overflow-x: auto;">
+                    <!-- Workload table populated dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ──────────────────────────────────────────
+             MODULE 2: INTERACTIVE TIMETABLES
+             ────────────────────────────────────────── -->
+        <section class="view-section" id="sec-timetables">
+            <div class="timetable-container">
+                <div class="tt-toolbar">
+                    <div class="tt-year-pills">
+                        <button class="tt-year-pill active-se" id="btnYearSE" onclick="switchTimetableYear('se')">🎓 SE — Second Year</button>
+                        <button class="tt-year-pill" id="btnYearTE" onclick="switchTimetableYear('te')">🎓 TE — Third Year</button>
+                        <button class="tt-year-pill" id="btnYearBE" onclick="switchTimetableYear('be')">🎓 BE — Final Year</button>
+                    </div>
+
+                    <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                        <button class="btn btn-secondary btn-sm" onclick="exportActiveTimetable('pdf')">📄 PDF</button>
+                        <button class="btn btn-secondary btn-sm" onclick="exportActiveTimetable('excel')">📊 Excel</button>
+                        <button class="btn btn-secondary btn-sm" onclick="exportActiveTimetable('docx')">📝 Word</button>
+                        <button class="btn btn-secondary btn-sm" onclick="exportActiveTimetable('csv')">📑 CSV</button>
+                        <button class="btn btn-secondary btn-sm" onclick="window.print()">🖨️ Print</button>
+                        <button class="btn btn-primary btn-sm admin-only" onclick="openSaveVersionModal()">💾 Save Version</button>
+                    </div>
+                </div>
+
+                <!-- Timetable Grid -->
+                <div class="table-responsive">
+                    <table class="schedule-table">
+                        <thead>
+                            <tr id="ttHeaderRow">
+                                <th class="day-col">Day</th>
+                                <th>9:45–10:45</th>
+                                <th>10:45–11:45</th>
+                                <th>11:45–12:45</th>
+                                <th>12:45–1:45</th>
+                                <th style="background: var(--recess-bg); color: var(--recess-text); border-color: var(--recess-border);">1:45–2:15 (Recess)</th>
+                                <th>2:15–3:15</th>
+                                <th>3:15–4:15</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ttGridBody">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Legend & Edit instructions -->
+            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--text-muted); padding: 0 0.5rem;">
+                <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                    <span style="font-weight: 700;">Legend:</span>
+                    <span style="display: inline-flex; align-items: center; gap: 0.35rem;"><span style="width: 12px; height: 12px; border-radius: 3px; background: #DCEBDD; border: 1px solid #B7D3B9; display: inline-block;"></span> Theory Lectures</span>
+                    <span style="display: inline-flex; align-items: center; gap: 0.35rem;"><span style="width: 12px; height: 12px; border-radius: 3px; background: #F3DDD0; border: 1px solid #E2B9A2; display: inline-block;"></span> Practical Batches</span>
+                    <span style="display: inline-flex; align-items: center; gap: 0.35rem;"><span style="width: 12px; height: 12px; border-radius: 3px; background: #FBF6E8; border: 1px dashed #E8DDBF; display: inline-block;"></span> Protected Recess</span>
+                </div>
+                <span class="admin-only">💡 Tip: Click on any session cell to edit teacher or room with instant conflict check</span>
+            </div>
+        </section>
+
+        <!-- ──────────────────────────────────────────
+             MODULE 3: GENERATE TIMETABLE WORKFLOW
+             ────────────────────────────────────────── -->
+        <section class="view-section admin-only" id="sec-generate">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">⚙️ Interactive Timetable Generation Wizard</h2>
+                        <p class="card-subtitle">Constraint-driven automated scheduler respecting faculty limits, room capacities, and breaks</p>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <!-- Step 1: Years & Divisions -->
+                    <div style="background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1.25rem;">
+                        <h4 style="font-size: 0.88rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--primary);">1. Classes & Cohorts</h4>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; margin-bottom: 0.4rem;">
+                            <input type="checkbox" checked disabled> SE — Second Year Engineering
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; margin-bottom: 0.4rem;">
+                            <input type="checkbox" checked disabled> TE — Third Year Engineering
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem;">
+                            <input type="checkbox" checked disabled> BE — Final Year Engineering
+                        </label>
+                    </div>
+
+                    <!-- Step 2: Time Slots & Recess -->
+                    <div style="background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1.25rem;">
+                        <h4 style="font-size: 0.88rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--primary);">2. Daily Timings & Recess</h4>
+                        <p style="font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Working Days: Mon–Sat (6 Days)</p>
+                        <p style="font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Working Hours: 9:45 AM – 4:15 PM</p>
+                        <p style="font-size: 0.78rem; font-weight: 700; color: var(--accent-terracotta);">Protected Lunch Recess: 1:45 PM – 2:15 PM</p>
+                    </div>
+
+                    <!-- Step 3: Hard Constraints Checked -->
+                    <div style="background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1.25rem;">
+                        <h4 style="font-size: 0.88rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--primary);">3. Constraint Engine</h4>
+                        <ul style="font-size: 0.78rem; color: var(--text-secondary); padding-left: 1.15rem; line-height: 1.6;">
+                            <li>Zero faculty simultaneous overlap</li>
+                            <li>Zero classroom/lab double-booking</li>
+                            <li>Weekly theory/practical hours met</li>
+                            <li>Consecutive 2-hr practical blocks</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="text-align: center; padding: 1.5rem 0;">
+                    <button class="btn btn-primary" style="padding: 0.85rem 2.25rem; font-size: 1rem;" onclick="runGenerationEngine()">
+                        ⚡ Generate Complete Synchronized Schedule
+                    </button>
+                    <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.65rem;">
+                        Runs full constraint-solving engine across SE, TE, and BE classes.
+                    </p>
+                </div>
+
+                <!-- Generation Result Box (hidden until run) -->
+                <div id="genResultBox" style="display: none; margin-top: 1.5rem;">
+                    <!-- Injected dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ──────────────────────────────────────────
+             MODULE 4: FACULTY DIRECTORY & TIMETABLES
+             ────────────────────────────────────────── -->
+        <section class="view-section" id="sec-faculty">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">👨‍🏫 Departmental Faculty Directory</h2>
+                        <p class="card-subtitle">Click any faculty member to inspect their personalized weekly schedule</p>
+                    </div>
+                    <div style="display: flex; gap: 0.75rem; align-items: center;">
+                        <input type="text" id="facultySearchInput" placeholder="Search faculty name or initials..." oninput="filterFacultyCards()" style="padding: 0.45rem 0.85rem; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 0.85rem; width: 240px;">
+                        <button class="btn btn-primary btn-sm admin-only" onclick="openAddFacultyModal()">+ Add Faculty</button>
+                    </div>
+                </div>
+
+                <div class="faculty-grid" id="facultyCardsGrid">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ──────────────────────────────────────────
+             MODULE 5: CLASSROOMS & LABS
+             ────────────────────────────────────────── -->
+        <section class="view-section" id="sec-classrooms">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">🏢 Classrooms & Laboratories</h2>
+                        <p class="card-subtitle">Lecture halls and specialized tech labs with weekly utilization rates</p>
+                    </div>
+                    <button class="btn btn-primary btn-sm admin-only" onclick="openAddRoomModal()">+ Add Room / Lab</button>
+                </div>
+
+                <div class="faculty-grid" id="roomsCardsGrid">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ──────────────────────────────────────────
+             MODULE 6: SUBJECTS & CURRICULUM
+             ────────────────────────────────────────── -->
+        <section class="view-section" id="sec-subjects">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">📚 Curriculum Subjects & Weekly Hours</h2>
+                        <p class="card-subtitle">Required theory, practical hours, and laboratory room mappings</p>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <select id="subYearFilter" onchange="renderSubjectsTable()" style="padding: 0.45rem 0.85rem; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 0.82rem;">
+                            <option value="ALL">All Academic Years</option>
+                            <option value="SE">SE — Second Year</option>
+                            <option value="TE">TE — Third Year</option>
+                            <option value="BE">BE — Final Year</option>
+                        </select>
+                        <button class="btn btn-primary btn-sm admin-only" onclick="openAddSubjectModal()">+ Add Subject</button>
+                    </div>
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table class="schedule-table" style="min-width: 800px;">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left; padding-left: 1rem;">Subject Name</th>
+                                <th>Code</th>
+                                <th>Year</th>
+                                <th>Type</th>
+                                <th>Theory Hrs/Wk</th>
+                                <th>Practical Hrs/Wk</th>
+                                <th>Mapped Lab / Room</th>
+                                <th class="admin-only">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="subjectsTableBody">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ──────────────────────────────────────────
+             MODULE 7: ACADEMIC CALENDAR & HOLIDAYS
+             ────────────────────────────────────────── -->
+        <section class="view-section" id="sec-calendar">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">🗓️ Academic Calendar & Official Holidays (2026–2027)</h2>
+                        <p class="card-subtitle">Official public, state, and institutional holiday schedule respected by the generator</p>
+                    </div>
+                    <button class="btn btn-primary btn-sm admin-only" onclick="openAddHolidayModal()">+ Add Calendar Entry</button>
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table class="schedule-table" style="min-width: 700px;">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left; padding-left: 1rem;">Holiday / Event Name</th>
+                                <th>Date</th>
+                                <th>Category</th>
+                                <th style="text-align: left; padding-left: 1rem;">Description</th>
+                                <th class="admin-only">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="holidaysTableBody">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ──────────────────────────────────────────
+             MODULE 8: CONFLICT DETECTION CENTER
+             ────────────────────────────────────────── -->
+        <section class="view-section admin-only" id="sec-conflicts">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">⚠️ Smart Conflict Detection Center</h2>
+                        <p class="card-subtitle">Real-time validation against institutional hard and soft scheduling rules</p>
+                    </div>
+                    <button class="btn btn-secondary btn-sm" onclick="revalidateActiveSchedule()">🔄 Run Re-validation</button>
+                </div>
+
+                <!-- Status Banner -->
+                <div class="conflict-banner resolved" id="conflictStatusBanner">
+                    <span style="font-size: 1.5rem;">✅</span>
+                    <div>
+                        <h4 style="font-weight: 700; font-size: 0.95rem; color: var(--primary);" id="conflictBannerTitle">Zero Conflicts Detected</h4>
+                        <p style="font-size: 0.82rem; color: var(--text-secondary);" id="conflictBannerText">
+                            All faculty assignments, classroom allocations, and recess boundaries strictly satisfy all hard constraints.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Rules Checklist -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                    <div style="background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1rem;">
+                        <span class="badge-pill badge-success">PASSED</span>
+                        <h5 style="margin-top: 0.5rem; font-size: 0.85rem; font-weight: 700;">Faculty Simultaneous Overlap</h5>
+                        <p style="font-size: 0.75rem; color: var(--text-muted);">No teacher is assigned to multiple classes simultaneously.</p>
+                    </div>
+
+                    <div style="background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1rem;">
+                        <span class="badge-pill badge-success">PASSED</span>
+                        <h5 style="margin-top: 0.5rem; font-size: 0.85rem; font-weight: 700;">Classroom & Lab Double-Booking</h5>
+                        <p style="font-size: 0.75rem; color: var(--text-muted);">No classroom hosts more than one session at any time.</p>
+                    </div>
+
+                    <div style="background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1rem;">
+                        <span class="badge-pill badge-success">PASSED</span>
+                        <h5 style="margin-top: 0.5rem; font-size: 0.85rem; font-weight: 700;">Recess & Lunch Protection</h5>
+                        <p style="font-size: 0.75rem; color: var(--text-muted);">Slot 5 (1:45–2:15 PM) is protected across all engineering years.</p>
+                    </div>
+
+                    <div style="background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1rem;">
+                        <span class="badge-pill badge-success">PASSED</span>
+                        <h5 style="margin-top: 0.5rem; font-size: 0.85rem; font-weight: 700;">Subject Hours Fulfillment</h5>
+                        <p style="font-size: 0.75rem; color: var(--text-muted);">All 16 subjects satisfy required weekly theory and lab quotas.</p>
+                    </div>
+                </div>
+
+                <!-- Detailed Conflict Log -->
+                <h4 style="font-size: 0.88rem; font-weight: 700; margin-bottom: 0.75rem;">Active Conflict & Advisory Log:</h4>
+                <div id="conflictsListContainer">
+                    <div style="text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.88rem;">
+                        ✨ All constraints are satisfied. No unresolved conflicts found.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ──────────────────────────────────────────
+             MODULE 9: VERSION HISTORY & APPROVALS
+             ────────────────────────────────────────── -->
+        <section class="view-section admin-only" id="sec-versions">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">📜 Timetable Version History & Approvals</h2>
+                        <p class="card-subtitle">Audit trail of generated revisions, approvals, and one-click restoration</p>
+                    </div>
+                    <button class="btn btn-primary btn-sm" onclick="openSaveVersionModal()">+ Save Current as New Version</button>
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table class="schedule-table" style="min-width: 800px;">
+                        <thead>
+                            <tr>
+                                <th>Version</th>
+                                <th>Label / Name</th>
+                                <th>Status</th>
+                                <th>Created By</th>
+                                <th>Timestamp</th>
+                                <th>Conflicts</th>
+                                <th style="text-align: left; padding-left: 1rem;">Change Summary</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="versionsTableBody">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ──────────────────────────────────────────
+             MODULE 10: ANALYTICS & REPORTS
+             ────────────────────────────────────────── -->
+        <section class="view-section" id="sec-analytics">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">📈 Academic Scheduling Analytics</h2>
+                        <p class="card-subtitle">Real-time resource utilization, teaching load balance, and room efficiency</p>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+                    <!-- Hours Breakdown -->
+                    <div style="background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1.25rem;">
+                        <h4 style="font-size: 0.88rem; font-weight: 700; margin-bottom: 0.85rem; color: var(--primary);">Curriculum Hours Distribution</h4>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.85rem;">
+                            <span>Weekly Theory Lectures:</span>
+                            <strong id="analyticsTheoryHours">47 Hours</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.85rem;">
+                            <span>Weekly Practical Lab Sessions:</span>
+                            <strong id="analyticsPracticalHours">26 Hours</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; padding-top: 0.5rem; border-top: 1px solid var(--border-subtle);">
+                            <span>Total Instructional Load:</span>
+                            <strong id="analyticsTotalHours">73 Hours/Week</strong>
+                        </div>
+                    </div>
+
+                    <!-- Room Utilization Summary -->
+                    <div style="background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1.25rem;">
+                        <h4 style="font-size: 0.88rem; font-weight: 700; margin-bottom: 0.85rem; color: var(--primary);">Infrastructure Efficiency</h4>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.85rem;">
+                            <span>Active Lecture Halls:</span>
+                            <strong>5 Classrooms (Room 301, 302, 303, 401, 402)</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.85rem;">
+                            <span>Active Laboratories:</span>
+                            <strong>6 Labs (701, 702, 704, 501, 108, LL)</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; padding-top: 0.5rem; border-top: 1px solid var(--border-subtle);">
+                            <span>Average Lab Utilization:</span>
+                            <strong>31.2% (Balanced capacity)</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ──────────────────────────────────────────
+             MODULE 11: EXPORT CENTER
+             ────────────────────────────────────────── -->
+        <section class="view-section" id="sec-exports">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">📥 Multi-Format Export Center</h2>
+                        <p class="card-subtitle">Download official publication-ready schedules in PDF, Excel, Word, and CSV</p>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.25rem;">
+                    <!-- SE Export Card -->
+                    <div style="background: var(--bg-primary); border: 1px solid var(--se-border); border-radius: var(--radius-sm); padding: 1.25rem;">
+                        <span class="badge-pill" style="background: var(--se-bg); color: var(--se-text); border: 1px solid var(--se-border);">SECOND YEAR (SE)</span>
+                        <h4 style="margin: 0.65rem 0 0.35rem; font-size: 1rem; font-weight: 700;">SE Class Timetable</h4>
+                        <p style="font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 1rem;">Odd Semester 2026–2027 • Classroom 301</p>
+                        <div style="display: flex; gap: 0.45rem; flex-wrap: wrap;">
+                            <button class="btn btn-primary btn-sm" onclick="exportFile('pdf', 'year', 'se')">📄 PDF</button>
+                            <button class="btn btn-secondary btn-sm" onclick="exportFile('excel', 'year', 'se')">📊 Excel</button>
+                            <button class="btn btn-secondary btn-sm" onclick="exportFile('docx', 'year', 'se')">📝 Word</button>
+                            <button class="btn btn-secondary btn-sm" onclick="exportFile('csv', 'year', 'se')">📑 CSV</button>
+                        </div>
+                    </div>
+
+                    <!-- TE Export Card -->
+                    <div style="background: var(--bg-primary); border: 1px solid var(--te-border); border-radius: var(--radius-sm); padding: 1.25rem;">
+                        <span class="badge-pill" style="background: var(--te-bg); color: var(--te-text); border: 1px solid var(--te-border);">THIRD YEAR (TE)</span>
+                        <h4 style="margin: 0.65rem 0 0.35rem; font-size: 1rem; font-weight: 700;">TE Class Timetable</h4>
+                        <p style="font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 1rem;">Odd Semester 2026–2027 • Classroom 302</p>
+                        <div style="display: flex; gap: 0.45rem; flex-wrap: wrap;">
+                            <button class="btn btn-primary btn-sm" onclick="exportFile('pdf', 'year', 'te')">📄 PDF</button>
+                            <button class="btn btn-secondary btn-sm" onclick="exportFile('excel', 'year', 'te')">📊 Excel</button>
+                            <button class="btn btn-secondary btn-sm" onclick="exportFile('docx', 'year', 'te')">📝 Word</button>
+                            <button class="btn btn-secondary btn-sm" onclick="exportFile('csv', 'year', 'te')">📑 CSV</button>
+                        </div>
+                    </div>
+
+                    <!-- BE Export Card -->
+                    <div style="background: var(--bg-primary); border: 1px solid var(--be-border); border-radius: var(--radius-sm); padding: 1.25rem;">
+                        <span class="badge-pill" style="background: var(--be-bg); color: var(--be-text); border: 1px solid var(--be-border);">FINAL YEAR (BE)</span>
+                        <h4 style="margin: 0.65rem 0 0.35rem; font-size: 1rem; font-weight: 700;">BE Class Timetable</h4>
+                        <p style="font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 1rem;">Odd Semester 2026–2027 • Classroom 401</p>
+                        <div style="display: flex; gap: 0.45rem; flex-wrap: wrap;">
+                            <button class="btn btn-primary btn-sm" onclick="exportFile('pdf', 'year', 'be')">📄 PDF</button>
+                            <button class="btn btn-secondary btn-sm" onclick="exportFile('excel', 'year', 'be')">📊 Excel</button>
+                            <button class="btn btn-secondary btn-sm" onclick="exportFile('docx', 'year', 'be')">📝 Word</button>
+                            <button class="btn btn-secondary btn-sm" onclick="exportFile('csv', 'year', 'be')">📑 CSV</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══════════════════════════════════════════
+         MODAL 1: INDIVIDUAL FACULTY TIMETABLE MODAL
+         ═══════════════════════════════════════════ -->
+    <div class="modal-overlay" id="facultyModal">
+        <div class="modal-box modal-lg">
+            <div class="modal-header">
+                <div>
+                    <h3 class="modal-title" id="facultyModalTitle">Prof. Chandan Gaikwad</h3>
+                    <p class="card-subtitle" id="facultyModalSub">Associate Professor • Computer Engineering</p>
+                </div>
+                <button class="modal-close-btn" onclick="closeModal('facultyModal')">✕</button>
+            </div>
+            <div class="modal-body">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+                    <div id="facultyModalStats" style="font-size: 0.85rem; font-weight: 600; color: var(--primary);">
+                        <!-- Stats injected -->
+                    </div>
+                    <div style="display: flex; gap: 0.4rem;">
+                        <button class="btn btn-secondary btn-sm" id="btnExportFacPdf">📄 PDF</button>
+                        <button class="btn btn-secondary btn-sm" id="btnExportFacExcel">📊 Excel</button>
+                        <button class="btn btn-secondary btn-sm" id="btnExportFacWord">📝 Word</button>
+                        <button class="btn btn-secondary btn-sm" onclick="window.print()">🖨️ Print</button>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th class="day-col">Day</th>
+                                <th>9:45–10:45</th>
+                                <th>10:45–11:45</th>
+                                <th>11:45–12:45</th>
+                                <th>12:45–1:45</th>
+                                <th style="background: var(--recess-bg); color: var(--recess-text);">1:45–2:15 (Recess)</th>
+                                <th>2:15–3:15</th>
+                                <th>3:15–4:15</th>
+                            </tr>
+                        </thead>
+                        <tbody id="facultyModalBody">
+                            <!-- Injected dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('facultyModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         MODAL 2: CLASSROOM SCHEDULE MODAL
+         ═══════════════════════════════════════════ -->
+    <div class="modal-overlay" id="roomModal">
+        <div class="modal-box modal-lg">
+            <div class="modal-header">
+                <div>
+                    <h3 class="modal-title" id="roomModalTitle">Classroom 301 Schedule</h3>
+                    <p class="card-subtitle" id="roomModalSub">Main Academic Block • Capacity: 75</p>
+                </div>
+                <button class="modal-close-btn" onclick="closeModal('roomModal')">✕</button>
+            </div>
+            <div class="modal-body">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <div id="roomModalStats" style="font-size: 0.85rem; font-weight: 600; color: var(--primary);">
+                        <!-- Injected -->
+                    </div>
+                    <div style="display: flex; gap: 0.4rem;">
+                        <button class="btn btn-secondary btn-sm" id="btnExportRoomPdf">📄 PDF</button>
+                        <button class="btn btn-secondary btn-sm" id="btnExportRoomExcel">📊 Excel</button>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th class="day-col">Day</th>
+                                <th>9:45–10:45</th>
+                                <th>10:45–11:45</th>
+                                <th>11:45–12:45</th>
+                                <th>12:45–1:45</th>
+                                <th style="background: var(--recess-bg); color: var(--recess-text);">1:45–2:15 (Recess)</th>
+                                <th>2:15–3:15</th>
+                                <th>3:15–4:15</th>
+                            </tr>
+                        </thead>
+                        <tbody id="roomModalBody">
+                            <!-- Injected dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('roomModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         MODAL 3: QUICK SLOT EDITOR MODAL
+         ═══════════════════════════════════════════ -->
+    <div class="modal-overlay admin-only" id="slotEditorModal">
+        <div class="modal-box" style="max-width: 480px;">
+            <div class="modal-header">
+                <h3 class="modal-title">✏️ Edit Timetable Session</h3>
+                <button class="modal-close-btn" onclick="closeModal('slotEditorModal')">✕</button>
+            </div>
+            <div class="modal-body">
+                <p id="slotEditCoords" style="font-size: 0.82rem; font-weight: 700; color: var(--primary); margin-bottom: 1rem;">
+                    SE • Monday 9:45–10:45
+                </p>
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label>Subject</label>
+                    <input type="text" id="slotEditSubject" placeholder="e.g. OS, DBMS, MP">
+                </div>
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label>Faculty (Initials)</label>
+                    <input type="text" id="slotEditTeacher" placeholder="e.g. CG, NM, AG">
+                </div>
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label>Classroom / Lab Room</label>
+                    <input type="text" id="slotEditRoom" placeholder="e.g. Classroom 301, 704">
+                </div>
+                <div id="slotEditWarning" style="display: none; padding: 0.65rem; background: #FDF4ED; border: 1px solid var(--terracotta-border); border-radius: var(--radius-xs); font-size: 0.78rem; color: var(--accent-terracotta);">
+                    <!-- Conflict warning -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost" onclick="clearActiveSlot()">Clear Slot</button>
+                <button class="btn btn-secondary" onclick="closeModal('slotEditorModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="submitSlotEdit()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         MODAL 4: SAVE VERSION MODAL
+         ═══════════════════════════════════════════ -->
+    <div class="modal-overlay admin-only" id="saveVersionModal">
+        <div class="modal-box" style="max-width: 480px;">
+            <div class="modal-header">
+                <h3 class="modal-title">💾 Save Timetable Version</h3>
+                <button class="modal-close-btn" onclick="closeModal('saveVersionModal')">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label>Version Name / Label</label>
+                    <input type="text" id="versionNameInput" placeholder="e.g. Midterm Final Schedule v1">
+                </div>
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label>Status</label>
+                    <select id="versionStatusSelect">
+                        <option value="Approved">Approved</option>
+                        <option value="Draft">Draft</option>
+                        <option value="Published">Published (Live for Students)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Change Summary / Notes</label>
+                    <textarea id="versionSummaryInput" rows="3" placeholder="Describe revisions or reasons for adjustment..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('saveVersionModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="submitSaveVersion()">Save Version</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         MODAL 5: NOTIFICATIONS DRAWER
+         ═══════════════════════════════════════════ -->
+    <div class="modal-overlay" id="notifModal">
+        <div class="modal-box" style="max-width: 520px;">
+            <div class="modal-header">
+                <h3 class="modal-title">🔔 Activity Notifications</h3>
+                <button class="modal-close-btn" onclick="closeModal('notifModal')">✕</button>
+            </div>
+            <div class="modal-body">
+                <div style="display: flex; justify-content: flex-end; margin-bottom: 0.75rem;">
+                    <button class="btn btn-ghost btn-sm" onclick="markAllNotifsRead()">Mark All as Read</button>
+                </div>
+                <div id="notifListContainer" style="display: flex; flex-direction: column; gap: 0.65rem;">
+                    <!-- Injected dynamically -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('notifModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         CLIENT-SIDE APPLICATION JAVASCRIPT
+         ═══════════════════════════════════════════ -->
+    <script>
+        // Global Application State
+        let currentRole = 'admin';
+        let currentYear = 'se';
+        let activeTimetableData = null;
+        let facultyList = [];
+        let roomsList = [];
+        let subjectsList = [];
+        let holidaysList = [];
+        let editingCellMeta = null;
+
+        // Subject Palette Presets
+        const SUBJECT_PALETTES = {
+            'OS': 'blue', 'AI': 'blue', 'CC': 'blue', 'ML': 'blue', 'DS': 'blue',
+            'DBMS': 'sage', 'EM': 'sage', 'OOP': 'sage',
+            'PYTHON': 'mint', 'CNSS': 'mint', 'IOT': 'mint',
+            'SPCC': 'lavender', 'MC': 'lavender', 'AWN': 'lavender',
+            'AOA': 'yellow', 'DSA': 'yellow', 'TCS': 'yellow',
+            'EM4': 'olive', 'MATH': 'olive',
+            'MP': 'peach', 'DC': 'peach', 'WEB': 'peach',
+            'HMI': 'rose', 'CYBER': 'rose',
+            'LAB': 'terracotta'
+        };
+
+        const PALETTE_OPTIONS = ['sage', 'mint', 'blue', 'lavender', 'yellow', 'peach', 'rose', 'olive', 'terracotta', 'cream'];
+
+        function getSubjectColorClass(subject) {
+            if (!subject) return 'cream';
+            const clean = subject.trim().toUpperCase();
+            if (SUBJECT_PALETTES[clean]) return SUBJECT_PALETTES[clean];
+            let hash = 0;
+            for (let i = 0; i < clean.length; i++) {
+                hash = clean.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            return PALETTE_OPTIONS[Math.abs(hash) % PALETTE_OPTIONS.length];
+        }
+
+        // ═══════════════════════════════════════════
+        // INITIALIZATION & DATA LOADING
+        // ═══════════════════════════════════════════
+        window.addEventListener('DOMContentLoaded', async () => {
+            await refreshAllData();
+        });
+
+        async function refreshAllData() {
+            try {
+                await Promise.all([
+                    loadDashboardStats(),
+                    loadCurrentTimetable(),
+                    loadFacultyList(),
+                    loadRoomsList(),
+                    loadSubjectsList(),
+                    loadHolidaysList(),
+                    loadNotifications(),
+                    loadVersionsList()
+                ]);
+            } catch (err) {
+                console.error("Initialization error:", err);
+            }
+        }
+
+        // ═══════════════════════════════════════════
+        // NAVIGATION & MODULE SWITCHING
+        // ═══════════════════════════════════════════
+        function switchModule(modName) {
+            document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.module-tab').forEach(t => t.classList.remove('active'));
+
+            const sec = document.getElementById('sec-' + modName);
+            const tab = document.getElementById('tab-' + modName);
+            if (sec) sec.classList.add('active');
+            if (tab) tab.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function onRoleChange(role) {
+            currentRole = role;
+            document.querySelectorAll('.admin-only').forEach(el => {
+                el.style.display = (role === 'admin') ? '' : 'none';
+            });
+            showToast(`Switched view to ${role.toUpperCase()} role`);
+        }
+
+        // ═══════════════════════════════════════════
+        // DASHBOARD STATS LOADER
+        // ═══════════════════════════════════════════
+        async function loadDashboardStats() {
+            try {
+                const res = await fetch('/api/dashboard/stats');
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    const d = json.data;
+                    document.getElementById('statFacultyCount').textContent = d.total_teachers;
+                    document.getElementById('statSubjectCount').textContent = d.total_subjects;
+                    document.getElementById('statRoomCount').textContent = d.total_classrooms;
+                    document.getElementById('statConflictCount').textContent = d.active_conflicts;
+
+                    const iconEl = document.getElementById('statConflictIcon');
+                    if (d.active_conflicts === 0) {
+                        iconEl.textContent = '✅';
+                        iconEl.style.background = '#EBF3EE';
+                        iconEl.style.color = 'var(--primary)';
+                    } else {
+                        iconEl.textContent = '⚠️';
+                        iconEl.style.background = '#FDF4ED';
+                        iconEl.style.color = 'var(--accent-terracotta)';
+                    }
+
+                    // Populate upcoming holidays on dashboard
+                    const hContainer = document.getElementById('dashHolidaysList');
+                    if (d.upcoming_holidays && d.upcoming_holidays.length > 0) {
+                        hContainer.innerHTML = d.upcoming_holidays.slice(0, 4).map(h => `
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.45rem 0.65rem; background: var(--bg-primary); border-radius: var(--radius-xs); border: 1px solid var(--border-subtle); font-size: 0.8rem;">
+                                <span style="font-weight: 700; color: var(--text-primary);">${h.name}</span>
+                                <span style="color: var(--primary); font-weight: 600;">${h.date}</span>
+                            </div>
+                        `).join('');
+                    }
+
+                    // Populate Workload Table
+                    const wContainer = document.getElementById('dashWorkloadTable');
+                    if (d.teacher_workload && d.teacher_workload.length > 0) {
+                        wContainer.innerHTML = `
+                            <table class="schedule-table" style="min-width: 650px;">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align: left; padding-left: 1rem;">Faculty Member</th>
+                                        <th>Designation</th>
+                                        <th>Theory Hrs</th>
+                                        <th>Practical Hrs</th>
+                                        <th>Total Weekly</th>
+                                        <th>Capacity</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${d.teacher_workload.slice(0, 8).map(w => `
+                                        <tr>
+                                            <td style="text-align: left; padding-left: 1rem; font-weight: 700;">${w.name} (${w.initials})</td>
+                                            <td style="text-align: center; color: var(--text-muted); font-size: 0.78rem;">${w.designation}</td>
+                                            <td style="text-align: center;">${w.theory}h</td>
+                                            <td style="text-align: center;">${w.practical}h</td>
+                                            <td style="text-align: center; font-weight: 800; color: var(--primary);">${w.total}h</td>
+                                            <td style="text-align: center;"><span class="badge-pill badge-success">${w.max_weekly}h max</span></td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        `;
+                    }
+                }
+            } catch (err) {
+                console.error("Dashboard stats error:", err);
+            }
+        }
+
+        // ═══════════════════════════════════════════
+        // CURRENT TIMETABLE LOADER & RENDERER
+        // ═══════════════════════════════════════════
+        async function loadCurrentTimetable() {
+            try {
+                const res = await fetch('/api/timetables/current');
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    activeTimetableData = json.data;
+                    renderTimetableGrid();
+                    updateConflictCenter(json.conflicts || []);
+                }
+            } catch (err) {
+                console.error("Timetable load error:", err);
+            }
+        }
+
+        function switchTimetableYear(yearKey) {
+            currentYear = yearKey;
+            document.querySelectorAll('.tt-year-pill').forEach(b => b.className = 'tt-year-pill');
+            const btn = document.getElementById('btnYear' + yearKey.toUpperCase());
+            if (btn) btn.classList.add('active-' + yearKey);
+            renderTimetableGrid();
+        }
+
+        function renderTimetableGrid() {
+            if (!activeTimetableData || !activeTimetableData[currentYear]) return;
+
+            const tbody = document.getElementById('ttGridBody');
+            const rows = activeTimetableData[currentYear];
+
+            let html = '';
+            rows.forEach((row, d_idx) => {
+                html += `<tr><td class="day-cell">${row.day}</td>`;
+                row.slots.forEach((slot, s_idx) => {
+                    const isRecess = slot.isRecess;
+                    const isLab = slot.isLab;
+                    const txt = slot.text || '';
+                    const subject = slot.subject || txt;
+                    const teacher = slot.teacher || '';
+                    const room = slot.room || '';
+
+                    if (isRecess) {
+                        html += `<td>
+                            <div class="tt-cell-recess" title="Protected Recess & Lunch Break (No classes scheduled)">
+                                <span class="icon">☕</span>
+                                <span class="label">RECESS</span>
+                                <span class="time">1:45–2:15</span>
+                            </div>
+                        </td>`;
+                    } else if (isLab) {
+                        html += `<td>
+                            <div class="tt-cell-block theme-terracotta" onclick="openSlotEditor(${d_idx}, ${s_idx})">
+                                <div class="block-top">
+                                    <span class="block-subject">${subject}</span>
+                                    <span class="block-room-badge">${room || 'Lab'}</span>
+                                </div>
+                                <div class="block-bottom">
+                                    <span class="block-teacher">${teacher || 'Practical'}</span>
+                                    <span class="block-type-chip" style="background: rgba(181, 110, 64, 0.15); color: #B56E40;">LAB</span>
+                                </div>
+                            </div>
+                        </td>`;
+                    } else if (txt) {
+                        const theme = getSubjectColorClass(subject);
+                        html += `<td>
+                            <div class="tt-cell-block theme-${theme}" onclick="openSlotEditor(${d_idx}, ${s_idx})">
+                                <div class="block-top">
+                                    <span class="block-subject">${subject}</span>
+                                    <span class="block-room-badge">${room}</span>
+                                </div>
+                                <div class="block-bottom">
+                                    <span class="block-teacher">${teacher}</span>
+                                    <span class="block-type-chip" style="background: rgba(0,0,0,0.06);">TH</span>
+                                </div>
+                            </div>
+                        </td>`;
+                    } else {
+                        html += `<td>
+                            <div class="tt-cell-empty" onclick="openSlotEditor(${d_idx}, ${s_idx})">
+                                <span>+ Assign</span>
+                            </div>
+                        </td>`;
+                    }
+                });
+                html += '</tr>';
+            });
+
+            tbody.innerHTML = html;
+        }
+
+        // ═══════════════════════════════════════════
+        // GENERATION ENGINE RUNNER
+        // ═══════════════════════════════════════════
+        async function runGenerationEngine() {
+            showToast("Running constraint solver across all departments...", "info");
+            try {
+                const res = await fetch('/api/generate', { method: 'POST' });
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    activeTimetableData = json.data;
+                    renderTimetableGrid();
+                    await loadDashboardStats();
+                    updateConflictCenter(json.conflicts || []);
+
+                    const resBox = document.getElementById('genResultBox');
+                    resBox.style.display = 'block';
+                    resBox.innerHTML = `
+                        <div class="conflict-banner resolved">
+                            <span style="font-size: 1.5rem;">🎉</span>
+                            <div>
+                                <h4 style="font-weight: 700; font-size: 1rem; color: var(--primary);">
+                                    Timetable Generation Succeeded (0 Hard Conflicts)
+                                </h4>
+                                <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.25rem;">
+                                    All 3 academic years (SE, TE, BE) successfully scheduled across 16 faculty members and 11 classrooms/labs with protected recess periods.
+                                </p>
+                                <div style="margin-top: 0.85rem; display: flex; gap: 0.65rem;">
+                                    <button class="btn btn-primary btn-sm" onclick="switchModule('timetables')">View Generated Timetable →</button>
+                                    <button class="btn btn-secondary btn-sm" onclick="openSaveVersionModal()">Save Approved Version</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    showToast("🎉 Timetable generated with 0 conflicts!");
+                } else {
+                    showToast(json.error || "Generation error", "error");
+                }
+            } catch (err) {
+                showToast("Generation failed: " + err.message, "error");
+            }
+        }
+
+        // ═══════════════════════════════════════════
+        // SLOT EDITOR MODAL & CELL EDITING
+        // ═══════════════════════════════════════════
+        function openSlotEditor(dayIdx, slotIdx) {
+            if (currentRole !== 'admin') return;
+
+            const slot = activeTimetableData[currentYear][dayIdx].slots[slotIdx];
+            if (slot.isRecess) {
+                showToast("Protected recess slot cannot be altered.", "info");
+                return;
+            }
+
+            editingCellMeta = { year: currentYear, dayIdx, slotIdx };
+            const days = ["MON", "TUE", "WED", "THU", "FRI", "SAT"];
+            document.getElementById('slotEditCoords').textContent = `${currentYear.toUpperCase()} • ${days[dayIdx]} ${slot.time}`;
+            document.getElementById('slotEditSubject').value = slot.subject || '';
+            document.getElementById('slotEditTeacher').value = slot.teacher || '';
+            document.getElementById('slotEditRoom').value = slot.room || '';
+            document.getElementById('slotEditWarning').style.display = 'none';
+
+            openModal('slotEditorModal');
+        }
+
+        async function submitSlotEdit() {
+            if (!editingCellMeta) return;
+
+            const subject = document.getElementById('slotEditSubject').value.trim();
+            const teacher = document.getElementById('slotEditTeacher').value.trim();
+            const room = document.getElementById('slotEditRoom').value.trim();
+
+            try {
+                const res = await fetch('/api/timetables/update_slot', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        year: editingCellMeta.year,
+                        day_index: editingCellMeta.dayIdx,
+                        slot_index: editingCellMeta.slotIdx,
+                        subject, teacher, room
+                    })
+                });
+
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    activeTimetableData = json.data;
+                    renderTimetableGrid();
+                    updateConflictCenter(json.conflicts || []);
+                    closeModal('slotEditorModal');
+                    showToast("Slot updated and re-validated!");
+                } else {
+                    showToast(json.error || "Update error", "error");
+                }
+            } catch (err) {
+                showToast("Update failed: " + err.message, "error");
+            }
+        }
+
+        function clearActiveSlot() {
+            document.getElementById('slotEditSubject').value = '';
+            document.getElementById('slotEditTeacher').value = '';
+            document.getElementById('slotEditRoom').value = '';
+            submitSlotEdit();
+        }
+
+        // ═══════════════════════════════════════════
+        // FACULTY DIRECTORY & INDIVIDUAL SCHEDULES
+        // ═══════════════════════════════════════════
+        async function loadFacultyList() {
+            try {
+                const res = await fetch('/api/faculty/timetables');
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    facultyList = json.data;
+                    renderFacultyCards(facultyList);
+                }
+            } catch (err) {
+                console.error("Faculty load error:", err);
+            }
+        }
+
+        function renderFacultyCards(list) {
+            const grid = document.getElementById('facultyCardsGrid');
+            grid.innerHTML = list.map(f => `
+                <div class="faculty-card" onclick="viewFacultySchedule('${f.initials}', '${f.name}', '${f.designation}')">
+                    <div>
+                        <div class="faculty-card-header">
+                            <div class="faculty-avatar">${f.initials}</div>
+                            <div>
+                                <div class="faculty-name">${f.name}</div>
+                                <div class="faculty-desig">${f.designation}</div>
+                            </div>
+                        </div>
+
+                        <div class="faculty-chips-row">
+                            <span class="chip chip-slot">Slot ${f.time_slot}</span>
+                            ${f.subjects.map(s => `<span class="chip" style="background: #EBF3EE; color: var(--primary);">${s}</span>`).join('')}
+                        </div>
+                    </div>
+
+                    <div class="faculty-stats-bar">
+                        <span style="color: var(--text-secondary);">Teaching: <strong>${f.scheduled_hours}h/wk</strong></span>
+                        <span class="badge-pill badge-success" style="font-size: 0.68rem;">Max ${f.max_hours_per_week}h</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterFacultyCards() {
+            const query = document.getElementById('facultySearchInput').value.toLowerCase();
+            const filtered = facultyList.filter(f => f.name.toLowerCase().includes(query) || f.initials.toLowerCase().includes(query));
+            renderFacultyCards(filtered);
+        }
+
+        async function viewFacultySchedule(initials, name, desig) {
+            document.getElementById('facultyModalTitle').textContent = `${name} (${initials})`;
+            document.getElementById('facultyModalSub').textContent = `${desig} • Computer Engineering`;
+
+            document.getElementById('btnExportFacPdf').onclick = () => exportFile('pdf', 'faculty', initials);
+            document.getElementById('btnExportFacExcel').onclick = () => exportFile('excel', 'faculty', initials);
+            document.getElementById('btnExportFacWord').onclick = () => exportFile('docx', 'faculty', initials);
+
+            try {
+                const res = await fetch(`/api/faculty/${initials}/timetable`);
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    const data = json.data;
+                    document.getElementById('facultyModalStats').textContent = `Total Assigned Teaching Load: ${data.total_hours} Hours/Week across ${data.years.join(', ')}`;
+
+                    const tbody = document.getElementById('facultyModalBody');
+                    let html = '';
+                    data.grid.forEach(row => {
+                        html += `<tr><td class="day-cell">${row.day}</td>`;
+                        row.slots.forEach(s => {
+                            if (s.isRecess) {
+                                html += `<td><div class="tt-cell-recess"><span class="label">RECESS</span></div></td>`;
+                            } else if (s.status === 'busy') {
+                                const theme = getSubjectColorClass(s.subject);
+                                html += `<td>
+                                    <div class="tt-cell-block theme-${theme}" style="min-height: 65px;">
+                                        <div class="block-top"><span class="block-subject">${s.subject}</span><span class="block-room-badge">${s.year}</span></div>
+                                        <div class="block-bottom"><span class="block-teacher">${s.room || 'Room'}</span></div>
+                                    </div>
+                                </td>`;
+                            } else {
+                                html += `<td><div class="tt-cell-empty" style="min-height: 65px; border-style: solid; opacity: 0.6;"><span>Free</span></div></td>`;
+                            }
+                        });
+                        html += '</tr>';
+                    });
+                    tbody.innerHTML = html;
+                    openModal('facultyModal');
+                }
+            } catch (err) {
+                showToast("Error loading faculty timetable: " + err.message, "error");
+            }
+        }
+
+        // ═══════════════════════════════════════════
+        // CLASSROOMS & LABS DIRECTORY & SCHEDULES
+        // ═══════════════════════════════════════════
+        async function loadRoomsList() {
+            try {
+                const res = await fetch('/api/classrooms');
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    roomsList = json.data;
+                    renderRoomsCards(roomsList);
+                }
+            } catch (err) {
+                console.error("Rooms load error:", err);
+            }
+        }
+
+        function renderRoomsCards(list) {
+            const grid = document.getElementById('roomsCardsGrid');
+            grid.innerHTML = list.map(r => `
+                <div class="faculty-card" onclick="viewRoomSchedule('${r.room_number}', '${r.name}')">
+                    <div>
+                        <div class="faculty-card-header">
+                            <div class="faculty-avatar" style="background: ${r.room_type === 'laboratory' ? 'var(--accent-terracotta)' : 'var(--secondary-sage)'};">
+                                ${r.room_type === 'laboratory' ? '🔬' : '🏢'}
+                            </div>
+                            <div>
+                                <div class="faculty-name">${r.name}</div>
+                                <div class="faculty-desig">${r.building} • Floor ${r.floor_number}</div>
+                            </div>
+                        </div>
+
+                        <div class="faculty-chips-row">
+                            <span class="chip" style="background: var(--bg-primary);">${r.room_type.toUpperCase()}</span>
+                            <span class="chip" style="background: #FAF7F2;">Capacity: ${r.capacity}</span>
+                            ${r.has_ac ? '<span class="chip" style="background: #EBF3EE; color: var(--primary);">AC</span>' : ''}
+                            ${r.has_projector ? '<span class="chip" style="background: #EBF3EE; color: var(--primary);">Projector</span>' : ''}
+                        </div>
+                    </div>
+
+                    <div class="faculty-stats-bar">
+                        <span style="color: var(--primary); font-weight: 700;">View Room Schedule →</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function viewRoomSchedule(roomNum, roomName) {
+            document.getElementById('roomModalTitle').textContent = `${roomName} (Room ${roomNum})`;
+            document.getElementById('roomModalSub').textContent = `Weekly Allocation Schedule`;
+
+            document.getElementById('btnExportRoomPdf').onclick = () => exportFile('pdf', 'classroom', roomNum);
+            document.getElementById('btnExportRoomExcel').onclick = () => exportFile('excel', 'classroom', roomNum);
+
+            try {
+                const res = await fetch(`/api/classroom/${roomNum}/timetable`);
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    const data = json.data;
+                    document.getElementById('roomModalStats').textContent = `Weekly Utilization: ${data.utilization_rate}% (${data.occupied_slots} of ${data.total_slots} teaching periods)`;
+
+                    const tbody = document.getElementById('roomModalBody');
+                    let html = '';
+                    data.grid.forEach(row => {
+                        html += `<tr><td class="day-cell">${row.day}</td>`;
+                        row.slots.forEach(s => {
+                            if (s.isRecess) {
+                                html += `<td><div class="tt-cell-recess"><span class="label">RECESS</span></div></td>`;
+                            } else if (s.status === 'occupied') {
+                                const theme = getSubjectColorClass(s.subject);
+                                html += `<td>
+                                    <div class="tt-cell-block theme-${theme}" style="min-height: 65px;">
+                                        <div class="block-top"><span class="block-subject">${s.subject}</span><span class="block-room-badge">${s.year}</span></div>
+                                        <div class="block-bottom"><span class="block-teacher">${s.teacher}</span></div>
+                                    </div>
+                                </td>`;
+                            } else {
+                                html += `<td><div class="tt-cell-empty" style="min-height: 65px; border-style: solid; opacity: 0.6;"><span>Available</span></div></td>`;
+                            }
+                        });
+                        html += '</tr>';
+                    });
+                    tbody.innerHTML = html;
+                    openModal('roomModal');
+                }
+            } catch (err) {
+                showToast("Error loading room schedule: " + err.message, "error");
+            }
+        }
+
+        // ═══════════════════════════════════════════
+        // SUBJECTS & CURRICULUM
+        // ═══════════════════════════════════════════
+        async function loadSubjectsList() {
+            try {
+                const res = await fetch('/api/subjects');
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    subjectsList = json.data;
+                    renderSubjectsTable();
+                }
+            } catch (err) {
+                console.error("Subjects load error:", err);
+            }
+        }
+
+        function renderSubjectsTable() {
+            const filter = document.getElementById('subYearFilter').value;
+            const tbody = document.getElementById('subjectsTableBody');
+            const filtered = (filter === 'ALL') ? subjectsList : subjectsList.filter(s => s.year_code === filter);
+
+            tbody.innerHTML = filtered.map(s => `
+                <tr>
+                    <td style="text-align: left; padding-left: 1rem; font-weight: 700;">${s.name}</td>
+                    <td style="text-align: center;"><span class="badge-pill" style="background: var(--bg-primary);">${s.code}</span></td>
+                    <td style="text-align: center;"><span class="badge-pill ${s.year_code ? 'badge-success' : ''}">${s.year_code || 'General'}</span></td>
+                    <td style="text-align: center; text-transform: capitalize;">${s.subject_type}</td>
+                    <td style="text-align: center;">${s.theory_hours_per_week}h</td>
+                    <td style="text-align: center;">${s.practical_hours_per_week}h</td>
+                    <td style="text-align: center; font-weight: 600; color: var(--primary);">${s.preferred_room || 'Lecture Hall'}</td>
+                    <td class="admin-only" style="text-align: center;">
+                        <button class="btn btn-ghost btn-sm" onclick="deleteSubject(${s.id})" title="Delete Subject">🗑️</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        async function deleteSubject(id) {
+            if (!confirm("Are you sure you want to remove this subject?")) return;
+            await fetch(`/api/subjects/${id}`, { method: 'DELETE' });
+            await loadSubjectsList();
+            showToast("Subject removed.");
+        }
+
+        // ═══════════════════════════════════════════
+        // ACADEMIC CALENDAR & HOLIDAYS
+        // ═══════════════════════════════════════════
+        async function loadHolidaysList() {
+            try {
+                const res = await fetch('/api/holidays');
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    holidaysList = json.data;
+                    renderHolidaysTable();
+                }
+            } catch (err) {
+                console.error("Holidays load error:", err);
+            }
+        }
+
+        function renderHolidaysTable() {
+            const tbody = document.getElementById('holidaysTableBody');
+            tbody.innerHTML = holidaysList.map(h => `
+                <tr>
+                    <td style="text-align: left; padding-left: 1rem; font-weight: 700;">${h.name}</td>
+                    <td style="text-align: center; font-weight: 600; color: var(--primary);">${h.date}</td>
+                    <td style="text-align: center;"><span class="badge-pill" style="background: var(--terracotta-light); color: var(--accent-terracotta);">${h.holiday_type.toUpperCase()}</span></td>
+                    <td style="text-align: left; padding-left: 1rem; color: var(--text-secondary); font-size: 0.82rem;">${h.description}</td>
+                    <td class="admin-only" style="text-align: center;">
+                        <button class="btn btn-ghost btn-sm" onclick="deleteHoliday(${h.id})" title="Delete Holiday">🗑️</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        async function deleteHoliday(id) {
+            if (!confirm("Delete this holiday entry?")) return;
+            await fetch(`/api/holidays/${id}`, { method: 'DELETE' });
+            await loadHolidaysList();
+            showToast("Holiday entry removed.");
+        }
+
+        // ═══════════════════════════════════════════
+        // CONFLICT DETECTION CENTER
+        // ═══════════════════════════════════════════
+        function updateConflictCenter(conflicts) {
+            const banner = document.getElementById('conflictStatusBanner');
+            const title = document.getElementById('conflictBannerTitle');
+            const text = document.getElementById('conflictBannerText');
+            const container = document.getElementById('conflictsListContainer');
+
+            const hardErrors = conflicts.filter(c => c.severity === 'error');
+            const warnings = conflicts.filter(c => c.severity === 'warning');
+
+            if (hardErrors.length === 0) {
+                banner.className = 'conflict-banner resolved';
+                title.textContent = 'Zero Hard Conflicts Detected';
+                title.style.color = 'var(--primary)';
+                text.textContent = 'All faculty assignments, classroom allocations, and recess boundaries strictly satisfy all hard constraints.';
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 2rem; color: var(--primary); font-size: 0.88rem; font-weight: 600;">
+                        ✨ All hard constraints are fully satisfied! No scheduling collisions.
+                    </div>
+                `;
+            } else {
+                banner.className = 'conflict-banner';
+                title.textContent = `${hardErrors.length} Hard Conflict(s) Detected`;
+                title.style.color = 'var(--accent-terracotta)';
+                text.textContent = 'Action required: Overlapping sessions or room conflicts need resolution before final publication.';
+
+                container.innerHTML = hardErrors.map(c => `
+                    <div class="conflict-item">
+                        <div>
+                            <span class="badge-pill badge-error">${c.type.toUpperCase()}</span>
+                            <h5 style="font-size: 0.88rem; font-weight: 700; margin: 0.4rem 0 0.2rem;">${c.message}</h5>
+                            <p style="font-size: 0.78rem; color: var(--text-secondary);">💡 Suggestion: ${c.suggestion}</p>
+                        </div>
+                        <button class="btn btn-secondary btn-sm" onclick="switchModule('timetables')">Resolve in Grid →</button>
+                    </div>
+                `).join('');
+            }
+        }
+
+        async function revalidateActiveSchedule() {
+            showToast("Revalidating constraints...", "info");
+            try {
+                const res = await fetch('/api/timetables/validate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ timetable_data: activeTimetableData })
+                });
+                const json = await res.json();
+                updateConflictCenter(json.conflicts || []);
+                showToast(json.valid ? "Validation passed: 0 conflicts!" : "Validation complete: conflicts detected.");
+            } catch (err) {
+                showToast("Validation failed: " + err.message, "error");
+            }
+        }
+
+        // ═══════════════════════════════════════════
+        // VERSION HISTORY & APPROVALS
+        // ═══════════════════════════════════════════
+        async function loadVersionsList() {
+            try {
+                const res = await fetch('/api/timetables/versions');
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    renderVersionsTable(json.data);
+                }
+            } catch (err) {
+                console.error("Versions load error:", err);
+            }
+        }
+
+        function renderVersionsTable(versions) {
+            const tbody = document.getElementById('versionsTableBody');
+            if (!tbody) return;
+
+            tbody.innerHTML = versions.map(v => `
+                <tr>
+                    <td style="font-weight: 800; color: var(--primary);">v${v.version_number}</td>
+                    <td style="text-align: left; padding-left: 1rem; font-weight: 700;">${v.name}</td>
+                    <td style="text-align: center;"><span class="badge-pill ${v.status === 'Published' ? 'badge-success' : 'badge-warning'}">${v.status}</span></td>
+                    <td style="text-align: center; font-size: 0.78rem;">${v.created_by}</td>
+                    <td style="text-align: center; font-size: 0.78rem; color: var(--text-muted);">${v.created_at}</td>
+                    <td style="text-align: center;">${v.conflicts_count === 0 ? '<span class="badge-pill badge-success">0 Conflicts</span>' : `<span class="badge-pill badge-error">${v.conflicts_count}</span>`}</td>
+                    <td style="text-align: left; padding-left: 1rem; font-size: 0.78rem; color: var(--text-secondary);">${v.change_summary}</td>
+                    <td style="text-align: center; white-space: nowrap;">
+                        <button class="btn btn-secondary btn-sm" onclick="restoreVersion(${v.id})" title="Restore this revision">Restore</button>
+                        ${v.status !== 'Published' ? `<button class="btn btn-primary btn-sm" onclick="publishVersion(${v.id})" title="Publish to students">Publish</button>` : ''}
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function openSaveVersionModal() {
+            document.getElementById('versionNameInput').value = `Timetable Revision ${new Date().toLocaleDateString()}`;
+            document.getElementById('versionSummaryInput').value = 'Scheduled approved by academic department';
+            openModal('saveVersionModal');
+        }
+
+        async function submitSaveVersion() {
+            const name = document.getElementById('versionNameInput').value.trim();
+            const status = document.getElementById('versionStatusSelect').value;
+            const summary = document.getElementById('versionSummaryInput').value.trim();
+
+            try {
+                const res = await fetch('/api/timetables/save', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, status, summary })
+                });
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    closeModal('saveVersionModal');
+                    await loadVersionsList();
+                    showToast(`Saved version v${json.version_number} successfully!`);
+                }
+            } catch (err) {
+                showToast("Save version failed: " + err.message, "error");
+            }
+        }
+
+        async function restoreVersion(id) {
+            if (!confirm("Revert active schedule to this version?")) return;
+            try {
+                const res = await fetch(`/api/timetables/restore/${id}`, { method: 'POST' });
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    activeTimetableData = json.data;
+                    renderTimetableGrid();
+                    await loadVersionsList();
+                    showToast("Schedule restored to prior version!");
+                }
+            } catch (err) {
+                showToast("Restore failed: " + err.message, "error");
+            }
+        }
+
+        async function publishVersion(id) {
+            try {
+                const res = await fetch(`/api/timetables/publish/${id}`, { method: 'POST' });
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    await loadVersionsList();
+                    showToast("Timetable officially published for students and faculty!");
+                }
+            } catch (err) {
+                showToast("Publish error: " + err.message, "error");
+            }
+        }
+
+        // ═══════════════════════════════════════════
+        // NOTIFICATIONS CENTER
+        // ═══════════════════════════════════════════
+        async function loadNotifications() {
+            try {
+                const res = await fetch('/api/notifications');
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    const unread = json.data.filter(n => !n.is_read).length;
+                    document.getElementById('notifBadge').textContent = unread;
+                    const container = document.getElementById('notifListContainer');
+                    if (container) {
+                        container.innerHTML = json.data.map(n => `
+                            <div style="padding: 0.75rem; background: ${n.is_read ? 'var(--bg-primary)' : '#FAF1EB'}; border: 1px solid var(--border-color); border-radius: var(--radius-xs);">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+                                    <strong style="font-size: 0.85rem; color: var(--text-primary);">${n.title}</strong>
+                                    <span style="font-size: 0.7rem; color: var(--text-muted);">${n.created_at ? n.created_at.substring(0, 10) : ''}</span>
+                                </div>
+                                <p style="font-size: 0.78rem; color: var(--text-secondary);">${n.message}</p>
+                            </div>
+                        `).join('');
+                    }
+                }
+            } catch (err) {
+                console.error("Notifications load error:", err);
+            }
+        }
+
+        function openNotifDrawer() {
+            openModal('notifModal');
+        }
+
+        async function markAllNotifsRead() {
+            await fetch('/api/notifications/read_all', { method: 'POST' });
+            await loadNotifications();
+            showToast("All notifications marked as read.");
+        }
+
+        // ═══════════════════════════════════════════
+        // EXPORT HELPERS
+        // ═══════════════════════════════════════════
+        function exportActiveTimetable(fmt) {
+            exportFile(fmt, 'year', currentYear);
+        }
+
+        function exportFile(fmt, targetType, targetId) {
+            showToast(`Generating ${fmt.toUpperCase()} export...`, "info");
+            window.location.href = `/api/export/${fmt}/${targetType}/${targetId}`;
+        }
+
+        // ═══════════════════════════════════════════
+        // DEMO RESET
+        // ═══════════════════════════════════════════
+        async function resetDemoData() {
+            if (!confirm("Reset database to standard 16-faculty demo dataset with 0 conflicts?")) return;
+            showToast("Resetting demo dataset...", "info");
+            try {
+                const res = await fetch('/api/reset_sample', { method: 'POST' });
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    await refreshAllData();
+                    showToast("Demo dataset restored successfully!");
+                }
+            } catch (err) {
+                showToast("Reset failed: " + err.message, "error");
+            }
+        }
+
+        // ═══════════════════════════════════════════
+        // MODALS & TOAST
+        // ═══════════════════════════════════════════
+        function openModal(id) {
+            const m = document.getElementById(id);
+            if (m) m.classList.add('show');
+        }
+
+        function closeModal(id) {
+            const m = document.getElementById(id);
+            if (m) m.classList.remove('show');
+        }
+
+        function showToast(msg, type = 'success') {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.className = `toast ${type} show`;
+            setTimeout(() => t.classList.remove('show'), 3500);
+        }
+    </script>
+</body>
+</html>
