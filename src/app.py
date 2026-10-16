@@ -571,10 +571,6 @@ def legacy_download(year):
 
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    try:
-        app.run(debug=True, port=port)
-    except OSError:
-        port = 5001
-        print(f"Port 5000 in use. Running Slotify on http://127.0.0.1:{port}")
-        app.run(debug=True, port=port)
+    port = int(os.environ.get('PORT', 5050))
+    print(f"Starting Slotify server on http://127.0.0.1:{port}")
+    app.run(debug=True, host='127.0.0.1', port=port)
