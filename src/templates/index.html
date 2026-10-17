@@ -1026,6 +1026,388 @@
                 print-color-adjust: exact;
             }
         }
+
+        /* ═══════════════════════════════════════════
+           LANDING PAGE & WORKFLOW STYLES (SWISS GRID MINIMALISM)
+           ═══════════════════════════════════════════ */
+        .landing-hero {
+            padding: 3.5rem 2rem 3rem;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 2.5rem;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(180deg, #FFFFFF 0%, var(--bg-primary) 100%);
+            border-radius: var(--radius-lg);
+            margin-bottom: 2.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+        @media (max-width: 960px) {
+            .landing-hero { grid-template-columns: 1fr; padding: 2rem 1.25rem; }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary-light);
+            color: var(--primary);
+            border: 1px solid var(--primary-border);
+            padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .landing-hero h1 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 2.75rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.25rem;
+        }
+        .landing-hero h1 span {
+            color: var(--primary);
+        }
+
+        .landing-hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            max-width: 580px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn-hero-primary {
+            background: var(--primary);
+            color: #FFFFFF;
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 0.9rem 1.85rem;
+            border-radius: var(--radius-sm);
+            box-shadow: 0 4px 14px rgba(49, 92, 69, 0.28);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            cursor: pointer;
+            border: 1px solid #244734;
+            transition: var(--transition);
+        }
+        .btn-hero-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(49, 92, 69, 0.35);
+        }
+
+        .btn-hero-secondary {
+            background: #FFFFFF;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 0.9rem 1.85rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-strong);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        .btn-hero-secondary:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Live Preview Card */
+        .hero-preview-box {
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+        .preview-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: 1rem;
+        }
+        .preview-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .preview-mini-grid {
+            display: grid;
+            grid-template-columns: 60px repeat(3, 1fr);
+            gap: 0.5rem;
+            font-size: 0.72rem;
+        }
+        .preview-slot-cell {
+            padding: 0.55rem 0.5rem;
+            border-radius: var(--radius-xs);
+            border: 1px solid transparent;
+            line-height: 1.25;
+        }
+
+        /* Features Grid */
+        .features-section {
+            padding: 2.5rem 0;
+        }
+        .section-headline {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        .section-headline h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+        .section-headline p {
+            color: var(--text-secondary);
+            font-size: 0.98rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        .feature-card {
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.75rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-border);
+        }
+        .feature-icon-bubble {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+        .feature-title {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+        .feature-desc {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* How It Works (3 Steps) */
+        .how-it-works-section {
+            padding: 2.5rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        @media (max-width: 860px) {
+            .steps-grid { grid-template-columns: 1fr; }
+        }
+        .step-card {
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 2rem 1.5rem;
+            position: relative;
+            box-shadow: var(--shadow-sm);
+        }
+        .step-badge {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            color: #FFFFFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        .step-title {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+        .step-desc {
+            font-size: 0.86rem;
+            color: var(--text-secondary);
+            line-height: 1.55;
+        }
+
+        /* Call to Action Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, #203E2F 100%);
+            color: #FFFFFF;
+            border-radius: var(--radius-lg);
+            padding: 3.5rem 2rem;
+            text-align: center;
+            margin: 3rem 0 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+        .cta-banner h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            color: #FFFFFF;
+        }
+        .cta-banner p {
+            font-size: 1.05rem;
+            color: var(--sage-light);
+            max-width: 580px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        /* ═══════════════════════════════════════════
+           WORKFLOW STEPPER BAR
+           ═══════════════════════════════════════════ */
+        .stepper-nav {
+            display: flex;
+            align-items: center;
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 0.75rem 1rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            box-shadow: var(--shadow-sm);
+            gap: 0.35rem;
+        }
+        .step-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: var(--radius-xs);
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: var(--transition);
+            white-space: nowrap;
+            border: 1px solid transparent;
+            background: transparent;
+        }
+        .step-item:hover {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        .step-item.active {
+            background: var(--primary-light);
+            color: var(--primary);
+            border-color: var(--primary-border);
+            font-weight: 700;
+        }
+        .step-item.completed {
+            color: var(--primary);
+        }
+        .step-num-pill {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 800;
+        }
+        .step-item.active .step-num-pill {
+            background: var(--primary);
+            color: #FFFFFF;
+        }
+        .step-item.completed .step-num-pill {
+            background: var(--secondary-sage);
+            color: #FFFFFF;
+        }
+        .stepper-divider {
+            color: var(--border-strong);
+            font-size: 0.8rem;
+        }
+
+        /* Workflow Step Panels */
+        .workflow-step {
+            display: none;
+        }
+        .workflow-step.active {
+            display: block;
+        }
+
+        .step-footer-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .nav-link-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0.4rem 0.75rem;
+            border-radius: var(--radius-xs);
+            transition: var(--transition);
+            font-family: inherit;
+        }
+        .nav-link-btn:hover {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
     </style>
 </head>
 <body>
@@ -1037,7 +1419,7 @@
          TOP NAVBAR
          ═══════════════════════════════════════════ -->
     <header class="top-navbar">
-        <a href="#" class="brand-container" onclick="switchModule('dashboard'); return false;">
+        <a href="#" class="brand-container" onclick="switchModule('landing'); return false;">
             <div class="brand-logo">🗓️</div>
             <div class="brand-text">
                 <h1>Slotify <span>🗓️</span></h1>
@@ -1045,7 +1427,25 @@
             </div>
         </a>
 
+        <!-- Center Navigation Links -->
+        <div style="display: flex; gap: 0.5rem; align-items: center;" class="nav-center-links">
+            <button class="nav-link-btn" onclick="switchModule('landing')">Home</button>
+            <button class="nav-link-btn" onclick="switchModule('landing'); setTimeout(() => scrollToLandingSection('landing-features'), 50);">Features</button>
+            <button class="nav-link-btn" onclick="switchModule('landing'); setTimeout(() => scrollToLandingSection('landing-how'), 50);">How It Works</button>
+            <button class="nav-link-btn" onclick="switchModule('dashboard')">Dashboard</button>
+        </div>
+
         <div class="nav-actions">
+            <!-- Demo Data Quick Action -->
+            <button class="btn btn-secondary btn-sm" onclick="tryWithDemoData()" title="Prefill workflow with realistic sample college dataset">
+                🧪 Try with Demo Data
+            </button>
+
+            <!-- Primary Generate Timetable Button -->
+            <button class="btn btn-primary btn-sm" onclick="startWorkflow()" title="Launch interactive multi-step timetable wizard">
+                ✨ Generate Timetable
+            </button>
+
             <!-- Role Switcher -->
             <div class="role-badge-selector" title="Switch User Role View">
                 <span>👤 Role:</span>
@@ -1057,8 +1457,8 @@
             </div>
 
             <!-- Quick Action: Demo Reset -->
-            <button class="btn btn-secondary btn-sm admin-only" onclick="resetDemoData()" title="Reset to standard 16-faculty zero-conflict dataset">
-                🔄 Reset Demo
+            <button class="btn btn-ghost btn-sm admin-only" onclick="resetDemoData()" title="Reset database to standard 16-faculty zero-conflict dataset">
+                🔄 Reset
             </button>
 
             <!-- Notifications Bell -->
@@ -1073,9 +1473,10 @@
          MODULE SUB-NAVIGATION TABS
          ═══════════════════════════════════════════ -->
     <nav class="module-nav-bar">
-        <button class="module-tab active" onclick="switchModule('dashboard')" id="tab-dashboard">📊 Dashboard</button>
+        <button class="module-tab active" onclick="switchModule('landing')" id="tab-landing">🏠 Home</button>
+        <button class="module-tab" onclick="switchModule('workflow')" id="tab-workflow">⚡ Generator Workflow</button>
         <button class="module-tab" onclick="switchModule('timetables')" id="tab-timetables">📅 Timetables</button>
-        <button class="module-tab admin-only" onclick="switchModule('generate')" id="tab-generate">⚙️ Generate Timetable</button>
+        <button class="module-tab" onclick="switchModule('dashboard')" id="tab-dashboard">📊 Dashboard</button>
         <button class="module-tab" onclick="switchModule('faculty')" id="tab-faculty">👨‍🏫 Faculty Directory</button>
         <button class="module-tab" onclick="switchModule('classrooms')" id="tab-classrooms">🏢 Classrooms & Labs</button>
         <button class="module-tab" onclick="switchModule('subjects')" id="tab-subjects">📚 Subjects</button>
@@ -1092,9 +1493,689 @@
     <main class="main-content">
 
         <!-- ──────────────────────────────────────────
+             MODULE 0: INTERACTIVE LANDING PAGE
+             ────────────────────────────────────────── -->
+        <section class="view-section active" id="sec-landing">
+            <!-- Hero Section -->
+            <div class="landing-hero">
+                <div class="landing-hero-content">
+                    <div class="hero-badge">
+                        <span>🗓️ Academic Scheduling 2026–2027</span>
+                        <span>•</span>
+                        <span>Zero Conflicts Guaranteed</span>
+                    </div>
+                    <h1>Your Perfect Timetable, <span>Without the Chaos.</span></h1>
+                    <p class="landing-hero-desc">
+                        Create conflict-free college timetables in minutes. Manage faculty, subjects, classrooms, and academic schedules with one intelligent platform.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="btn-hero-primary" onclick="startWorkflow()">
+                            ✨ Generate Timetable
+                        </button>
+                        <button class="btn-hero-secondary" onclick="tryWithDemoData()">
+                            🧪 Try with Demo Data
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hero Interactive Timetable Preview -->
+                <div class="hero-preview-box">
+                    <div class="preview-header">
+                        <div class="preview-title">
+                            <span>📅 Computer Engineering — Live Preview</span>
+                        </div>
+                        <span class="badge-pill badge-success">Verified Active</span>
+                    </div>
+                    <div class="preview-mini-grid">
+                        <div style="font-weight: 700; color: var(--text-muted);">Slot / Day</div>
+                        <div style="font-weight: 700; color: var(--text-muted); text-align: center;">9:45–10:45</div>
+                        <div style="font-weight: 700; color: var(--text-muted); text-align: center;">10:45–11:45</div>
+                        <div style="font-weight: 700; color: var(--text-muted); text-align: center;">11:45–12:45</div>
+
+                        <div style="font-weight: 700; color: var(--text-secondary);">MON</div>
+                        <div class="preview-slot-cell" style="background: var(--se-bg); border-color: var(--se-border);">
+                            <div style="font-weight: 700; color: var(--se-text);">DS</div>
+                            <div style="font-size: 0.65rem; color: var(--text-muted);">Prof. AS • LH-101</div>
+                        </div>
+                        <div class="preview-slot-cell" style="background: var(--te-bg); border-color: var(--te-border);">
+                            <div style="font-weight: 700; color: var(--te-text);">DBMS</div>
+                            <div style="font-size: 0.65rem; color: var(--text-muted);">Prof. RK • LH-101</div>
+                        </div>
+                        <div class="preview-slot-cell" style="background: var(--be-bg); border-color: var(--be-border);">
+                            <div style="font-weight: 700; color: var(--be-text);">CN</div>
+                            <div style="font-size: 0.65rem; color: var(--text-muted);">Prof. SD • LH-102</div>
+                        </div>
+
+                        <div style="font-weight: 700; color: var(--text-secondary);">TUE</div>
+                        <div class="preview-slot-cell" style="background: var(--be-bg); border-color: var(--be-border);">
+                            <div style="font-weight: 700; color: var(--be-text);">AI</div>
+                            <div style="font-size: 0.65rem; color: var(--text-muted);">Prof. VR • LH-101</div>
+                        </div>
+                        <div class="preview-slot-cell" style="background: var(--se-bg); border-color: var(--se-border);">
+                            <div style="font-weight: 700; color: var(--se-text);">OOPM</div>
+                            <div style="font-size: 0.65rem; color: var(--text-muted);">Prof. MN • LH-101</div>
+                        </div>
+                        <div class="preview-slot-cell" style="background: var(--te-bg); border-color: var(--te-border);">
+                            <div style="font-weight: 700; color: var(--te-text);">OS</div>
+                            <div style="font-size: 0.65rem; color: var(--text-muted);">Prof. SP • LH-103</div>
+                        </div>
+
+                        <div style="font-weight: 700; color: var(--text-secondary);">WED</div>
+                        <div class="preview-slot-cell" style="grid-column: span 2; background: #FAF1EB; border-color: #E8CFBF;">
+                            <div style="font-weight: 700; color: #9A5A32;">⚡ Java Programming Lab (2h)</div>
+                            <div style="font-size: 0.65rem; color: var(--text-muted);">Prof. VR • Software Lab 2</div>
+                        </div>
+                        <div class="preview-slot-cell" style="background: var(--se-bg); border-color: var(--se-border);">
+                            <div style="font-weight: 700; color: var(--se-text);">EM-III</div>
+                            <div style="font-size: 0.65rem; color: var(--text-muted);">Prof. PK • LH-101</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem;">
+                        <span style="color: var(--text-muted);">16 Faculty • 11 Rooms • 0 Collisions</span>
+                        <a href="#" onclick="switchModule('timetables'); return false;" style="color: var(--primary); font-weight: 700; text-decoration: none;">Explore Live Schedule →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div class="features-section" id="landing-features">
+                <div class="section-headline">
+                    <h2>Engineered for Academic Scheduling Excellence</h2>
+                    <p>Purpose-built constraint algorithms and campus workflows that handle real departmental complexities.</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon-bubble" style="background: var(--primary-light); color: var(--primary);">⚡</div>
+                        <h3 class="feature-title">Smart Timetable Generation</h3>
+                        <p class="feature-desc">Automated backtracking CSP algorithm with MRV heuristics allocates theory lectures and multi-hour practical blocks in seconds without collisions.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon-bubble" style="background: var(--sage-light); color: var(--secondary-sage);">👨‍🏫</div>
+                        <h3 class="feature-title">Faculty Management</h3>
+                        <p class="feature-desc">Workload balancing, weekly hour caps, morning/afternoon slot preferences, and multi-subject qualification matching across all semesters.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon-bubble" style="background: #FCE8E8; color: var(--danger);">🛡️</div>
+                        <h3 class="feature-title">Conflict Detection</h3>
+                        <p class="feature-desc">Real-time multi-dimensional collision prevention ensures no professor, room, lab, or student cohort is ever scheduled concurrently.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon-bubble" style="background: var(--terracotta-light); color: var(--accent-terracotta);">🏢</div>
+                        <h3 class="feature-title">Classroom and Lab Allocation</h3>
+                        <p class="feature-desc">Automated room assignment matching student batch capacities with required hardware, projectors, computers, and specialized laboratories.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon-bubble" style="background: #F0F5F2; color: var(--primary);">🗓️</div>
+                        <h3 class="feature-title">Academic Calendar</h3>
+                        <p class="feature-desc">Institutional calendar integration respects non-working days, national holidays, term exams, and protected daily lunch recess intervals.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon-bubble" style="background: #F5EEFB; color: #6E3B87;">📥</div>
+                        <h3 class="feature-title">Export to PDF, Excel, and CSV</h3>
+                        <p class="feature-desc">One-click publication-ready document generator formats schedules for institutional notice boards, university archives, and faculty distribution.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- How It Works Section -->
+            <div class="how-it-works-section" id="landing-how">
+                <div class="section-headline">
+                    <h2>How It Works</h2>
+                    <p>Three straightforward steps to an optimized, conflict-free institutional timetable.</p>
+                </div>
+
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-badge">1</div>
+                        <h3 class="step-title">Enter Academic Information</h3>
+                        <p class="step-desc">Configure college working hours, divisions, subjects, faculty availability, and room capacities or preload realistic campus demo data in one click.</p>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-badge">2</div>
+                        <h3 class="step-title">Generate and Validate</h3>
+                        <p class="step-desc">Our backend CSP constraint solver evaluates millions of combinations to allocate synchronized, collision-free slots across all cohorts.</p>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-badge">3</div>
+                        <h3 class="step-title">Review, Edit, and Export</h3>
+                        <p class="step-desc">Inspect class and professor grids, lock preferred periods, test alternative configurations, and export certified PDF and spreadsheet documents.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Final Call to Action -->
+            <div class="cta-banner">
+                <h2>Ready to organize your academic schedule?</h2>
+                <p>Join department heads, schedulers, and faculty saving dozens of hours every semester with automated timetable generation.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <button class="btn btn-primary" style="background: #FFFFFF; color: var(--primary); font-size: 1.05rem; padding: 0.9rem 2.25rem; font-weight: 800; border: none; box-shadow: var(--shadow-md);" onclick="startWorkflow()">
+                        🚀 Create My Timetable
+                    </button>
+                    <button class="btn btn-secondary" style="background: transparent; color: #FFFFFF; border-color: rgba(255,255,255,0.4); font-size: 1.05rem; padding: 0.9rem 1.85rem;" onclick="tryWithDemoData()">
+                        🧪 Try with Demo Data
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ──────────────────────────────────────────
+             MODULE 0.5: MULTI-STEP TIMETABLE GENERATION WORKFLOW
+             ────────────────────────────────────────── -->
+        <section class="view-section" id="sec-workflow">
+            <!-- Workflow Header & Stepper -->
+            <div class="card" style="margin-bottom: 1.5rem;">
+                <div class="card-header" style="flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <h2 class="card-title">⚡ Smart Timetable Generation Workflow</h2>
+                        <p class="card-subtitle">Complete the 7 steps below to generate a conflict-free academic schedule</p>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <button class="btn btn-secondary btn-sm" onclick="tryWithDemoData()" title="Prefill all fields with realistic sample data">
+                            🧪 Load Demo Data
+                        </button>
+                        <button class="btn btn-ghost btn-sm" onclick="clearDemoWorkflowData()" title="Clear sample data without deleting user entries">
+                            🧹 Clear Demo Data
+                        </button>
+                        <button class="btn btn-primary btn-sm" onclick="runWorkflowGenerate()" title="Run scheduling engine immediately">
+                            ⚡ Generate Now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stepper Progress Bar -->
+                <div class="stepper-nav" id="workflowStepper">
+                    <button class="step-item active" onclick="goToWorkflowStep(1)" id="stepItem-1">
+                        <span class="step-num-pill">1</span>
+                        <span>Academic Setup</span>
+                    </button>
+                    <span class="stepper-divider">›</span>
+                    <button class="step-item" onclick="goToWorkflowStep(2)" id="stepItem-2">
+                        <span class="step-num-pill">2</span>
+                        <span>Classes & Divisions</span>
+                    </button>
+                    <span class="stepper-divider">›</span>
+                    <button class="step-item" onclick="goToWorkflowStep(3)" id="stepItem-3">
+                        <span class="step-num-pill">3</span>
+                        <span>Subjects</span>
+                    </button>
+                    <span class="stepper-divider">›</span>
+                    <button class="step-item" onclick="goToWorkflowStep(4)" id="stepItem-4">
+                        <span class="step-num-pill">4</span>
+                        <span>Faculty</span>
+                    </button>
+                    <span class="stepper-divider">›</span>
+                    <button class="step-item" onclick="goToWorkflowStep(5)" id="stepItem-5">
+                        <span class="step-num-pill">5</span>
+                        <span>Classrooms & Labs</span>
+                    </button>
+                    <span class="stepper-divider">›</span>
+                    <button class="step-item" onclick="goToWorkflowStep(6)" id="stepItem-6">
+                        <span class="step-num-pill">6</span>
+                        <span>Preferences</span>
+                    </button>
+                    <span class="stepper-divider">›</span>
+                    <button class="step-item" onclick="goToWorkflowStep(7)" id="stepItem-7">
+                        <span class="step-num-pill">7</span>
+                        <span>Review & Generate</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 1: ACADEMIC SETUP -->
+            <div class="workflow-step active" id="wfStep-1">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Step 1 — Academic Setup & Campus Hours</h3>
+                            <p class="card-subtitle">Configure departmental structure, working days, daily lecture timings, and protected breaks</p>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+                        <div class="form-group">
+                            <label>College / University Name *</label>
+                            <input type="text" id="wfCollegeName" value="Slotify Institute of Technology" placeholder="e.g. Stanford University">
+                        </div>
+                        <div class="form-group">
+                            <label>Department *</label>
+                            <input type="text" id="wfDepartment" value="Computer Science & Engineering" placeholder="e.g. Electrical Engineering">
+                        </div>
+                        <div class="form-group">
+                            <label>Academic Session / Year *</label>
+                            <input type="text" id="wfAcademicYear" value="2026–2027" placeholder="e.g. 2026–2027">
+                        </div>
+                        <div class="form-group">
+                            <label>Semester *</label>
+                            <select id="wfSemester">
+                                <option value="Odd Semester" selected>Odd Semester (Sem 3, 5, 7)</option>
+                                <option value="Even Semester">Even Semester (Sem 4, 6, 8)</option>
+                                <option value="Full Year">Annual System</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border-subtle);">
+                        <h4 style="font-size: 0.88rem; font-weight: 700; margin-bottom: 0.85rem; color: var(--primary);">Working Days Configuration</h4>
+                        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+                            <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 600; cursor: pointer;">
+                                <input type="checkbox" id="wfDayMon" checked> Monday
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 600; cursor: pointer;">
+                                <input type="checkbox" id="wfDayTue" checked> Tuesday
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 600; cursor: pointer;">
+                                <input type="checkbox" id="wfDayWed" checked> Wednesday
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 600; cursor: pointer;">
+                                <input type="checkbox" id="wfDayThu" checked> Thursday
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 600; cursor: pointer;">
+                                <input type="checkbox" id="wfDayFri" checked> Friday
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 600; cursor: pointer;">
+                                <input type="checkbox" id="wfDaySat" checked> Saturday
+                            </label>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border-subtle);">
+                        <div class="form-group">
+                            <label>College Start Time</label>
+                            <input type="time" id="wfStartTime" value="09:45">
+                        </div>
+                        <div class="form-group">
+                            <label>College End Time</label>
+                            <input type="time" id="wfEndTime" value="16:15">
+                        </div>
+                        <div class="form-group">
+                            <label>Theory Lecture Duration (mins)</label>
+                            <input type="number" id="wfTheoryDuration" value="60" min="30" max="120">
+                        </div>
+                        <div class="form-group">
+                            <label>Practical Session Duration (mins)</label>
+                            <input type="number" id="wfPracticalDuration" value="120" min="60" max="240">
+                        </div>
+                    </div>
+
+                    <div style="background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1.25rem; margin-top: 1.5rem;">
+                        <h4 style="font-size: 0.88rem; font-weight: 700; color: var(--accent-terracotta); margin-bottom: 0.75rem;">🥪 Protected Breaks & Recess Configuration</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+                            <div class="form-group">
+                                <label>Lunch Break Start Time *</label>
+                                <input type="time" id="wfLunchStart" value="13:45">
+                            </div>
+                            <div class="form-group">
+                                <label>Lunch Duration (minutes)</label>
+                                <input type="number" id="wfLunchDuration" value="30" min="15" max="90">
+                            </div>
+                            <div class="form-group">
+                                <label>Max Daily Lectures per Cohort</label>
+                                <input type="number" id="wfMaxLecturesDay" value="6" min="1" max="10">
+                            </div>
+                            <div class="form-group">
+                                <label>Max Faculty Teaching Hours/Week</label>
+                                <input type="number" id="wfMaxFacultyWeekly" value="24" min="6" max="40">
+                            </div>
+                        </div>
+                        <p style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.75rem;">
+                            ℹ️ Protected lunch break slots are hard constraints. The scheduling engine will never allocate classes during this period.
+                        </p>
+                    </div>
+
+                    <div class="step-footer-actions">
+                        <div></div>
+                        <button class="btn btn-primary" onclick="nextWorkflowStep(1)">
+                            Next: Classes & Divisions →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2: CLASSES AND DIVISIONS -->
+            <div class="workflow-step" id="wfStep-2">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Step 2 — Classes, Divisions & Batches</h3>
+                            <p class="card-subtitle">Manage student cohorts and laboratory practical batches</p>
+                        </div>
+                        <button class="btn btn-primary btn-sm" onclick="openAddClassModal()">
+                            ➕ Add Class / Division
+                        </button>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="schedule-table">
+                            <thead>
+                                <tr>
+                                    <th>Class / Year</th>
+                                    <th>Division</th>
+                                    <th>Student Strength</th>
+                                    <th>Lab Batches</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="wfClassesTableBody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="step-footer-actions">
+                        <button class="btn btn-secondary" onclick="prevWorkflowStep(2)">
+                            ← Back: Academic Setup
+                        </button>
+                        <button class="btn btn-primary" onclick="nextWorkflowStep(2)">
+                            Next: Subject Management →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 3: SUBJECT MANAGEMENT -->
+            <div class="workflow-step" id="wfStep-3">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Step 3 — Subject Management</h3>
+                            <p class="card-subtitle">Configure curriculum courses, weekly lecture requirements, and laboratory allocations</p>
+                        </div>
+                        <button class="btn btn-primary btn-sm" onclick="openAddSubjectModal()">
+                            ➕ Add Subject
+                        </button>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="schedule-table">
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Subject Name</th>
+                                    <th>Year</th>
+                                    <th>Type</th>
+                                    <th>Theory Hrs</th>
+                                    <th>Lab Hrs</th>
+                                    <th>Preferred Room</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="wfSubjectsTableBody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="step-footer-actions">
+                        <button class="btn btn-secondary" onclick="prevWorkflowStep(3)">
+                            ← Back: Classes & Divisions
+                        </button>
+                        <button class="btn btn-primary" onclick="nextWorkflowStep(3)">
+                            Next: Faculty Management →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 4: FACULTY MANAGEMENT -->
+            <div class="workflow-step" id="wfStep-4">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Step 4 — Faculty Management & Workloads</h3>
+                            <p class="card-subtitle">Manage professors, time preferences, qualified subjects, and weekly teaching quotas</p>
+                        </div>
+                        <button class="btn btn-primary btn-sm" onclick="openAddFacultyModal()">
+                            ➕ Add Faculty Member
+                        </button>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="schedule-table">
+                            <thead>
+                                <tr>
+                                    <th>Initials</th>
+                                    <th>Name</th>
+                                    <th>Designation</th>
+                                    <th>Slot Pref</th>
+                                    <th>Max Hrs/Wk</th>
+                                    <th>Assigned Subjects</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="wfFacultyTableBody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="step-footer-actions">
+                        <button class="btn btn-secondary" onclick="prevWorkflowStep(4)">
+                            ← Back: Subjects
+                        </button>
+                        <button class="btn btn-primary" onclick="nextWorkflowStep(4)">
+                            Next: Classrooms & Labs →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 5: CLASSROOMS AND LABS -->
+            <div class="workflow-step" id="wfStep-5">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Step 5 — Classrooms & Specialized Laboratories</h3>
+                            <p class="card-subtitle">Configure physical lecture halls, hardware labs, and computer centers</p>
+                        </div>
+                        <button class="btn btn-primary btn-sm" onclick="openAddRoomModal()">
+                            ➕ Add Room / Lab
+                        </button>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="schedule-table">
+                            <thead>
+                                <tr>
+                                    <th>Room No</th>
+                                    <th>Room Name</th>
+                                    <th>Type</th>
+                                    <th>Capacity</th>
+                                    <th>Building / Floor</th>
+                                    <th>Equipment</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="wfRoomsTableBody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="step-footer-actions">
+                        <button class="btn btn-secondary" onclick="prevWorkflowStep(5)">
+                            ← Back: Faculty
+                        </button>
+                        <button class="btn btn-primary" onclick="nextWorkflowStep(5)">
+                            Next: Scheduling Preferences →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 6: SCHEDULING PREFERENCES -->
+            <div class="workflow-step" id="wfStep-6">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Step 6 — Constraint Satisfaction & Optimization Preferences</h3>
+                            <p class="card-subtitle">Configure hard rules (strictly zero violations) and soft optimization heuristics</p>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <!-- Hard Constraints Card -->
+                        <div style="background: #FDFBF8; border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1.25rem;">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                                <span class="badge-pill badge-error">Hard Constraints</span>
+                                <span style="font-size: 0.8rem; font-weight: 700; color: var(--danger);">Strictly Enforced (Zero Violations)</span>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.85rem;">
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" id="prefHardFaculty" checked disabled>
+                                    <span><strong>Faculty Overlap:</strong> Zero simultaneous bookings for any professor.</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" id="prefHardRoom" checked disabled>
+                                    <span><strong>Classroom & Lab Overlap:</strong> Zero double-booking of any facility.</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" id="prefHardBreak" checked disabled>
+                                    <span><strong>Protected Recess:</strong> Strictly no classes during daily lunch recess.</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" id="prefHardCapacity" checked disabled>
+                                    <span><strong>Room Capacity Check:</strong> Room capacity must meet division strength.</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" id="prefHardWorkload" checked disabled>
+                                    <span><strong>Faculty Workload Cap:</strong> Do not exceed weekly contracted hours.</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Soft Preferences Card -->
+                        <div style="background: #FDFBF8; border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1.25rem;">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                                <span class="badge-pill badge-success">Soft Preferences</span>
+                                <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary);">Optimized Heuristics</span>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.85rem;">
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" id="prefSoftDistribution" checked>
+                                    <span><strong>Even Distribution:</strong> Max 1 theory session of same subject per day.</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" id="prefSoftSlotMatch" checked>
+                                    <span><strong>Slot Preferences:</strong> Honor morning (Slot 1) vs afternoon (Slot 2) preferences.</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" id="prefSoftConsecutive" checked>
+                                    <span><strong>Consecutive Limits:</strong> Limit back-to-back lectures for faculty without a break.</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" id="prefSoftGaps" checked>
+                                    <span><strong>Avoid Student Gaps:</strong> Keep cohort schedules compact with minimal idle periods.</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-footer-actions">
+                        <button class="btn btn-secondary" onclick="prevWorkflowStep(6)">
+                            ← Back: Classrooms & Labs
+                        </button>
+                        <button class="btn btn-primary" onclick="nextWorkflowStep(6)">
+                            Next: Review & Generate →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 7: REVIEW BEFORE GENERATION -->
+            <div class="workflow-step" id="wfStep-7">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Step 7 — Review Configuration & Generate</h3>
+                            <p class="card-subtitle">Verify all departmental data before invoking the backend CSP constraint engine</p>
+                        </div>
+                    </div>
+
+                    <!-- Summary KPI Tiles -->
+                    <div class="stats-grid" style="margin-bottom: 1.5rem;">
+                        <div class="stat-tile">
+                            <div class="stat-label">Classes & Divisions</div>
+                            <div class="stat-num" id="wfRevClassCount">3</div>
+                            <div class="stat-desc">SE, TE, BE engineering</div>
+                        </div>
+                        <div class="stat-tile">
+                            <div class="stat-label">Subjects</div>
+                            <div class="stat-num" id="wfRevSubjectCount">16</div>
+                            <div class="stat-desc">Theory and lab courses</div>
+                        </div>
+                        <div class="stat-tile">
+                            <div class="stat-label">Faculty Members</div>
+                            <div class="stat-num" id="wfRevFacultyCount">16</div>
+                            <div class="stat-desc">All qualified professors</div>
+                        </div>
+                        <div class="stat-tile">
+                            <div class="stat-label">Classrooms & Labs</div>
+                            <div class="stat-num" id="wfRevRoomCount">11</div>
+                            <div class="stat-desc">5 lecture halls, 6 labs</div>
+                        </div>
+                    </div>
+
+                    <!-- Review Details Accordion / Sections -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <div style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1.25rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                                <h4 style="font-size: 0.88rem; font-weight: 700; color: var(--primary);">Academic Setup & Timings</h4>
+                                <button class="btn btn-secondary btn-sm" onclick="goToWorkflowStep(1)">✏️ Edit</button>
+                            </div>
+                            <div style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.7;" id="wfRevSetupSummary">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+
+                        <div style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1.25rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                                <h4 style="font-size: 0.88rem; font-weight: 700; color: var(--primary);">Constraint Validation Status</h4>
+                                <span class="badge-pill badge-success">Pre-Check Passed</span>
+                            </div>
+                            <ul style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.7; padding-left: 1.15rem;">
+                                <li>✅ All classes have assigned subjects and teaching hours.</li>
+                                <li>✅ Qualified faculty available for every theory and practical course.</li>
+                                <li>✅ Sufficient classroom capacity for maximum division strength.</li>
+                                <li>✅ Daily 1:45 PM – 2:15 PM lunch recess protected from allocation.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Generate Timetable Call to Action -->
+                    <div style="text-align: center; padding: 2rem; background: var(--primary-light); border: 1px solid var(--primary-border); border-radius: var(--radius-md);">
+                        <h3 style="font-family: 'Manrope', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--primary); margin-bottom: 0.5rem;">
+                            Ready to Generate Academic Timetable
+                        </h3>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); max-width: 540px; margin: 0 auto 1.5rem;">
+                            The backend constraint satisfaction solver will compute conflict-free allocations across all cohorts, faculty members, and laboratories.
+                        </p>
+                        <button class="btn btn-primary" style="font-size: 1.1rem; padding: 0.95rem 2.75rem; box-shadow: 0 4px 14px rgba(49, 92, 69, 0.35);" onclick="runWorkflowGenerate()">
+                            ⚡ Generate Conflict-Free Timetable
+                        </button>
+                    </div>
+
+                    <div class="step-footer-actions">
+                        <button class="btn btn-secondary" onclick="prevWorkflowStep(7)">
+                            ← Back to Edit Preferences
+                        </button>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ──────────────────────────────────────────
              MODULE 1: DASHBOARD / OVERVIEW
              ────────────────────────────────────────── -->
-        <section class="view-section active" id="sec-dashboard">
+        <section class="view-section" id="sec-dashboard">
             <!-- KPI Tiles Grid -->
             <div class="stats-grid">
                 <div class="stat-tile">
@@ -1215,9 +2296,63 @@
         </section>
 
         <!-- ──────────────────────────────────────────
-             MODULE 2: INTERACTIVE TIMETABLES
+             MODULE 2: INTERACTIVE TIMETABLES & RESULTS
              ────────────────────────────────────────── -->
         <section class="view-section" id="sec-timetables">
+            <!-- Timetable Results Header & Controls -->
+            <div class="card" style="margin-bottom: 1.25rem;">
+                <div class="card-header" style="flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.25rem;">
+                            <h2 class="card-title" style="margin-bottom: 0;">📅 Timetable Results & Schedule Explorer</h2>
+                            <span class="badge-pill badge-success" id="ttVerifiedBadge">✅ 100% Conflict-Free</span>
+                        </div>
+                        <p class="card-subtitle">Active Academic Session: 2026–2027 • Backtracking CSP Constraint Engine</p>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <button class="btn btn-secondary btn-sm" onclick="startWorkflow()">
+                            ✏️ Edit in Workflow
+                        </button>
+                        <button class="btn btn-primary btn-sm admin-only" onclick="runGenerationEngine()">
+                            ⚡ Regenerate Timetable
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filters & Views Bar -->
+                <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; padding-top: 0.75rem; border-top: 1px solid var(--border-subtle);">
+                    <!-- Day Filter -->
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 0.78rem; font-weight: 700; color: var(--text-secondary);">Filter Day:</span>
+                        <select id="ttDayFilter" onchange="setDayFilter(this.value)" style="padding: 0.4rem 0.65rem; border: 1px solid var(--border-color); border-radius: var(--radius-xs); font-size: 0.82rem; background: var(--bg-surface);">
+                            <option value="all">All Days (Mon–Sat)</option>
+                            <option value="MON">Monday</option>
+                            <option value="TUE">Tuesday</option>
+                            <option value="WED">Wednesday</option>
+                            <option value="THU">Thursday</option>
+                            <option value="FRI">Friday</option>
+                            <option value="SAT">Saturday</option>
+                        </select>
+                    </div>
+
+                    <!-- Jump to Faculty Schedule -->
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 0.78rem; font-weight: 700; color: var(--text-secondary);">View by Faculty:</span>
+                        <select id="ttFacultySelector" onchange="if(this.value) { viewFacultySchedule(this.value, this.options[this.selectedIndex].text, 'Professor'); this.value=''; }" style="padding: 0.4rem 0.65rem; border: 1px solid var(--border-color); border-radius: var(--radius-xs); font-size: 0.82rem; background: var(--bg-surface);">
+                            <option value="">Select Faculty Schedule...</option>
+                        </select>
+                    </div>
+
+                    <!-- Jump to Room Schedule -->
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 0.78rem; font-weight: 700; color: var(--text-secondary);">View by Room / Lab:</span>
+                        <select id="ttRoomSelector" onchange="if(this.value) { viewRoomSchedule(this.value, this.options[this.selectedIndex].text); this.value=''; }" style="padding: 0.4rem 0.65rem; border: 1px solid var(--border-color); border-radius: var(--radius-xs); font-size: 0.82rem; background: var(--bg-surface);">
+                            <option value="">Select Room / Lab Schedule...</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
             <div class="timetable-container">
                 <div class="tt-toolbar">
                     <div class="tt-year-pills">
@@ -1847,6 +2982,245 @@
     </div>
 
     <!-- ═══════════════════════════════════════════
+         MODAL 6: ADD / EDIT FACULTY MODAL
+         ═══════════════════════════════════════════ -->
+    <div class="modal-overlay admin-only" id="addFacultyModal">
+        <div class="modal-box" style="max-width: 560px;">
+            <div class="modal-header">
+                <h3 class="modal-title" id="addFacultyModalTitle">➕ Add New Faculty Member</h3>
+                <button class="modal-close-btn" onclick="closeModal('addFacultyModal')">✕</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="editFacultyId" value="">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" id="fmName" placeholder="e.g. Dr. Priya Sharma">
+                    </div>
+                    <div class="form-group">
+                        <label>Initials *</label>
+                        <input type="text" id="fmInitials" placeholder="e.g. PS" maxlength="5" style="text-transform: uppercase;">
+                    </div>
+                    <div class="form-group">
+                        <label>Designation</label>
+                        <select id="fmDesignation">
+                            <option value="Assistant Professor">Assistant Professor</option>
+                            <option value="Associate Professor">Associate Professor</option>
+                            <option value="Professor">Professor</option>
+                            <option value="HOD">HOD</option>
+                            <option value="Visiting Faculty">Visiting Faculty</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Department</label>
+                        <input type="text" id="fmDepartment" placeholder="e.g. Computer Engineering" value="Computer Engineering">
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Time Slot</label>
+                        <select id="fmTimeSlot">
+                            <option value="1">Slot 1 (Morning)</option>
+                            <option value="2">Slot 2 (Afternoon)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Max Hours/Week</label>
+                        <input type="number" id="fmMaxHours" value="18" min="1" max="40">
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top: 1rem;">
+                    <label>Teaching Subjects (comma-separated codes)</label>
+                    <input type="text" id="fmSubjects" placeholder="e.g. OS, DBMS, AI">
+                </div>
+                <div id="addFacultyError" style="display: none; padding: 0.65rem; background: #FDF4ED; border: 1px solid var(--terracotta-border); border-radius: var(--radius-xs); font-size: 0.78rem; color: var(--accent-terracotta); margin-top: 0.75rem;"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('addFacultyModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="submitFacultyForm()">💾 Save Faculty</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         MODAL 7: ADD / EDIT ROOM MODAL
+         ═══════════════════════════════════════════ -->
+    <div class="modal-overlay admin-only" id="addRoomModal">
+        <div class="modal-box" style="max-width: 560px;">
+            <div class="modal-header">
+                <h3 class="modal-title" id="addRoomModalTitle">➕ Add New Room / Lab</h3>
+                <button class="modal-close-btn" onclick="closeModal('addRoomModal')">✕</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="editRoomId" value="">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label>Room Name *</label>
+                        <input type="text" id="rmName" placeholder="e.g. Classroom 401">
+                    </div>
+                    <div class="form-group">
+                        <label>Room Number *</label>
+                        <input type="text" id="rmNumber" placeholder="e.g. 401">
+                    </div>
+                    <div class="form-group">
+                        <label>Room Type</label>
+                        <select id="rmType">
+                            <option value="classroom">Classroom</option>
+                            <option value="laboratory">Laboratory</option>
+                            <option value="seminar_hall">Seminar Hall</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Capacity</label>
+                        <input type="number" id="rmCapacity" value="60" min="1" max="500">
+                    </div>
+                    <div class="form-group">
+                        <label>Building</label>
+                        <input type="text" id="rmBuilding" placeholder="e.g. Main Block" value="Main Block">
+                    </div>
+                    <div class="form-group">
+                        <label>Floor Number</label>
+                        <input type="number" id="rmFloor" value="3" min="0" max="20">
+                    </div>
+                </div>
+                <div style="display: flex; gap: 1.5rem; margin-top: 1rem;">
+                    <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer;">
+                        <input type="checkbox" id="rmHasAC" checked> Air Conditioned
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer;">
+                        <input type="checkbox" id="rmHasProjector" checked> Projector
+                    </label>
+                </div>
+                <div id="addRoomError" style="display: none; padding: 0.65rem; background: #FDF4ED; border: 1px solid var(--terracotta-border); border-radius: var(--radius-xs); font-size: 0.78rem; color: var(--accent-terracotta); margin-top: 0.75rem;"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('addRoomModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="submitRoomForm()">💾 Save Room</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         MODAL 8: ADD / EDIT SUBJECT MODAL
+         ═══════════════════════════════════════════ -->
+    <div class="modal-overlay admin-only" id="addSubjectModal">
+        <div class="modal-box" style="max-width: 560px;">
+            <div class="modal-header">
+                <h3 class="modal-title" id="addSubjectModalTitle">➕ Add New Subject</h3>
+                <button class="modal-close-btn" onclick="closeModal('addSubjectModal')">✕</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="editSubjectId" value="">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label>Subject Name *</label>
+                        <input type="text" id="smName" placeholder="e.g. Machine Learning">
+                    </div>
+                    <div class="form-group">
+                        <label>Subject Code *</label>
+                        <input type="text" id="smCode" placeholder="e.g. ML" style="text-transform: uppercase;">
+                    </div>
+                    <div class="form-group">
+                        <label>Academic Year *</label>
+                        <select id="smYear">
+                            <option value="SE">SE — Second Year</option>
+                            <option value="TE">TE — Third Year</option>
+                            <option value="BE">BE — Final Year</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Subject Type</label>
+                        <select id="smType">
+                            <option value="theory">Theory</option>
+                            <option value="practical">Practical</option>
+                            <option value="both">Theory + Practical</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Theory Hours/Week</label>
+                        <input type="number" id="smTheory" value="3" min="0" max="20">
+                    </div>
+                    <div class="form-group">
+                        <label>Practical Hours/Week</label>
+                        <input type="number" id="smPractical" value="2" min="0" max="20">
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top: 1rem;">
+                    <label>Preferred Room / Lab</label>
+                    <input type="text" id="smRoom" placeholder="e.g. Lab 704 or Classroom 301">
+                </div>
+                <div id="addSubjectError" style="display: none; padding: 0.65rem; background: #FDF4ED; border: 1px solid var(--terracotta-border); border-radius: var(--radius-xs); font-size: 0.78rem; color: var(--accent-terracotta); margin-top: 0.75rem;"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('addSubjectModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="submitSubjectForm()">💾 Save Subject</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         MODAL 9: CONFIRM DELETE MODAL
+         ═══════════════════════════════════════════ -->
+    <div class="modal-overlay admin-only" id="confirmDeleteModal">
+        <div class="modal-box" style="max-width: 440px;">
+            <div class="modal-header">
+                <h3 class="modal-title" style="color: var(--danger);">⚠️ Confirm Delete</h3>
+                <button class="modal-close-btn" onclick="closeModal('confirmDeleteModal')">✕</button>
+            </div>
+            <div class="modal-body">
+                <p id="deleteConfirmMsg" style="font-size: 0.92rem; color: var(--text-primary); line-height: 1.6;">
+                    Are you sure you want to delete this item?
+                </p>
+                <div id="deleteImpactWarning" style="display: none; margin-top: 1rem; padding: 0.75rem; background: #FDF4ED; border: 1px solid var(--terracotta-border); border-radius: var(--radius-xs); font-size: 0.82rem; color: var(--accent-terracotta);"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('confirmDeleteModal')">Cancel</button>
+                <button class="btn btn-primary" id="confirmDeleteBtn" style="background: var(--danger);" onclick="executeConfirmedDelete()">🗑️ Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         MODAL 10: ADD / EDIT CLASS & DIVISION MODAL
+         ═══════════════════════════════════════════ -->
+    <div class="modal-overlay admin-only" id="addClassModal">
+        <div class="modal-box" style="max-width: 500px;">
+            <div class="modal-header">
+                <h3 class="modal-title" id="addClassModalTitle">➕ Add Class / Division</h3>
+                <button class="modal-close-btn" onclick="closeModal('addClassModal')">✕</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="editClassId" value="">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label>Class / Year *</label>
+                        <select id="cmYearId">
+                            <option value="1">Second Year (SE)</option>
+                            <option value="2">Third Year (TE)</option>
+                            <option value="3">Final Year (BE)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Division Name *</label>
+                        <input type="text" id="cmDivisionName" placeholder="e.g. Division A" value="Division A">
+                    </div>
+                    <div class="form-group">
+                        <label>Student Strength</label>
+                        <input type="number" id="cmStrength" value="60" min="10" max="250">
+                    </div>
+                    <div class="form-group">
+                        <label>Lab Batches (B1, B2...)</label>
+                        <input type="number" id="cmBatchCount" value="3" min="1" max="10">
+                    </div>
+                </div>
+                <div id="addClassError" style="display: none; padding: 0.65rem; background: #FDF4ED; border: 1px solid var(--terracotta-border); border-radius: var(--radius-xs); font-size: 0.78rem; color: var(--accent-terracotta); margin-top: 0.75rem;"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('addClassModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="submitClassForm()">💾 Save Division</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
          CLIENT-SIDE APPLICATION JAVASCRIPT
          ═══════════════════════════════════════════ -->
     <script>
@@ -2029,6 +3403,12 @@
             renderTimetableGrid();
         }
 
+        let currentDayFilter = 'all';
+        function setDayFilter(day) {
+            currentDayFilter = day;
+            renderTimetableGrid();
+        }
+
         function renderTimetableGrid() {
             if (!activeTimetableData || !activeTimetableData[currentYear]) return;
 
@@ -2037,10 +3417,13 @@
 
             let html = '';
             rows.forEach((row, d_idx) => {
+                if (currentDayFilter !== 'all' && row.day !== currentDayFilter) return;
+
                 html += `<tr><td class="day-cell">${row.day}</td>`;
                 row.slots.forEach((slot, s_idx) => {
                     const isRecess = slot.isRecess;
                     const isLab = slot.isLab;
+                    const isLocked = slot.isLocked;
                     const txt = slot.text || '';
                     const subject = slot.subject || txt;
                     const teacher = slot.teacher || '';
@@ -2060,6 +3443,7 @@
                                 <div class="block-top">
                                     <span class="block-subject">${subject}</span>
                                     <span class="block-room-badge">${room || 'Lab'}</span>
+                                    <span style="cursor: pointer; font-size: 0.72rem; margin-left: 0.25rem;" onclick="event.stopPropagation(); toggleLockSlot('${currentYear}', '${row.day}', ${slot.slot_id})" title="${isLocked ? 'Locked in place (Click to unlock)' : 'Click to lock session'}">${isLocked ? '🔒' : '🔓'}</span>
                                 </div>
                                 <div class="block-bottom">
                                     <span class="block-teacher">${teacher || 'Practical'}</span>
@@ -2074,6 +3458,7 @@
                                 <div class="block-top">
                                     <span class="block-subject">${subject}</span>
                                     <span class="block-room-badge">${room}</span>
+                                    <span style="cursor: pointer; font-size: 0.72rem; margin-left: 0.25rem;" onclick="event.stopPropagation(); toggleLockSlot('${currentYear}', '${row.day}', ${slot.slot_id})" title="${isLocked ? 'Locked in place (Click to unlock)' : 'Click to lock session'}">${isLocked ? '🔒' : '🔓'}</span>
                                 </div>
                                 <div class="block-bottom">
                                     <span class="block-teacher">${teacher}</span>
@@ -2212,6 +3597,11 @@
                 if (json.status === 'ok') {
                     facultyList = json.data;
                     renderFacultyCards(facultyList);
+                    const sel = document.getElementById('ttFacultySelector');
+                    if (sel) {
+                        sel.innerHTML = '<option value="">Select Faculty Schedule...</option>' + 
+                            facultyList.map(f => `<option value="${f.initials}">${f.name} (${f.initials})</option>`).join('');
+                    }
                 }
             } catch (err) {
                 console.error("Faculty load error:", err);
@@ -2305,6 +3695,11 @@
                 if (json.status === 'ok') {
                     roomsList = json.data;
                     renderRoomsCards(roomsList);
+                    const sel = document.getElementById('ttRoomSelector');
+                    if (sel) {
+                        sel.innerHTML = '<option value="">Select Room / Lab Schedule...</option>' + 
+                            roomsList.map(r => `<option value="${r.room_number}">${r.name} (${r.room_number})</option>`).join('');
+                    }
                 }
             } catch (err) {
                 console.error("Rooms load error:", err);
@@ -2681,6 +4076,637 @@
                 }
             } catch (err) {
                 showToast("Reset failed: " + err.message, "error");
+            }
+        }
+
+        // ═══════════════════════════════════════════
+        // LANDING & WORKFLOW CONTROLLERS
+        // ═══════════════════════════════════════════
+        function scrollToLandingSection(id) {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        async function startWorkflow() {
+            switchModule('workflow');
+            await loadWorkflowConfig();
+            goToWorkflowStep(1);
+        }
+
+        async function tryWithDemoData() {
+            showToast("Loading realistic academic demo data...", "info");
+            try {
+                const res = await fetch('/api/demo/preload', { method: 'POST' });
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    populateWorkflowForms(json.data);
+                    await refreshAllData();
+                    switchModule('workflow');
+                    goToWorkflowStep(1);
+                    showToast("✨ Sample academic data prefilled across all 7 steps!");
+                } else {
+                    showToast("Failed to load demo data: " + (json.error || "Unknown error"), "error");
+                }
+            } catch (err) {
+                showToast("Demo load error: " + err.message, "error");
+            }
+        }
+
+        async function clearDemoWorkflowData() {
+            if (!confirm("Remove demo records? Any manually entered data will be preserved.")) return;
+            try {
+                const res = await fetch('/api/demo/erase', { method: 'POST' });
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    await refreshAllData();
+                    await loadWorkflowConfig();
+                    showToast("Demo data erased successfully. User records preserved.");
+                } else {
+                    showToast("Erase failed: " + (json.error || "Unknown error"), "error");
+                }
+            } catch (err) {
+                showToast("Erase error: " + err.message, "error");
+            }
+        }
+
+        let workflowState = {
+            classes: [],
+            subjects: [],
+            faculty: [],
+            rooms: [],
+            academic_setup: {}
+        };
+
+        async function loadWorkflowConfig() {
+            try {
+                const res = await fetch('/api/workflow/config');
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    populateWorkflowForms(json.data);
+                }
+            } catch (err) {
+                console.error("Workflow config load error:", err);
+            }
+        }
+
+        function populateWorkflowForms(data) {
+            if (!data) return;
+            workflowState = data;
+            const s = data.academic_setup || {};
+
+            if (document.getElementById('wfCollegeName') && s.college_name) document.getElementById('wfCollegeName').value = s.college_name;
+            if (document.getElementById('wfDepartment') && s.department) document.getElementById('wfDepartment').value = s.department;
+            if (document.getElementById('wfAcademicYear') && s.academic_year) document.getElementById('wfAcademicYear').value = s.academic_year;
+            if (document.getElementById('wfSemester') && s.semester) document.getElementById('wfSemester').value = s.semester;
+            if (document.getElementById('wfStartTime') && s.start_time) document.getElementById('wfStartTime').value = s.start_time;
+            if (document.getElementById('wfEndTime') && s.end_time) document.getElementById('wfEndTime').value = s.end_time;
+            if (document.getElementById('wfTheoryDuration') && s.theory_duration) document.getElementById('wfTheoryDuration').value = s.theory_duration;
+            if (document.getElementById('wfPracticalDuration') && s.practical_duration) document.getElementById('wfPracticalDuration').value = s.practical_duration;
+            if (document.getElementById('wfLunchStart') && s.lunch_break_time) document.getElementById('wfLunchStart').value = s.lunch_break_time;
+            if (document.getElementById('wfLunchDuration') && s.lunch_break_duration) document.getElementById('wfLunchDuration').value = s.lunch_break_duration;
+            if (document.getElementById('wfMaxLecturesDay') && s.max_lectures_per_day) document.getElementById('wfMaxLecturesDay').value = s.max_lectures_per_day;
+            if (document.getElementById('wfMaxFacultyWeekly') && s.max_faculty_weekly_hours) document.getElementById('wfMaxFacultyWeekly').value = s.max_faculty_weekly_hours;
+
+            // Render tables in Steps 2-5
+            renderWorkflowClasses(data.classes || []);
+            renderWorkflowSubjects(data.subjects || []);
+            renderWorkflowFaculty(data.faculty || []);
+            renderWorkflowRooms(data.classrooms || []);
+            updateWorkflowReviewSummary();
+        }
+
+        function renderWorkflowClasses(classes) {
+            const tbody = document.getElementById('wfClassesTableBody');
+            if (!tbody) return;
+            if (!classes || classes.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: var(--text-muted); padding: 1.5rem;">No classes added yet. Click "+ Add Class / Division" to create one.</td></tr>';
+                return;
+            }
+            tbody.innerHTML = classes.map(c => `
+                <tr>
+                    <td><strong>${c.academic_year_name || c.name || 'SE'}</strong></td>
+                    <td>${c.name || 'Division A'}</td>
+                    <td>${c.student_count || 60} students</td>
+                    <td>${c.batch_count || 3} Batches</td>
+                    <td>
+                        <button class="btn btn-ghost btn-sm" onclick="confirmDeleteEntity('division', ${c.id}, '${c.name}')" title="Delete class">🗑️</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderWorkflowSubjects(subjects) {
+            const tbody = document.getElementById('wfSubjectsTableBody');
+            if (!tbody) return;
+            if (!subjects || subjects.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: var(--text-muted); padding: 1.5rem;">No subjects added yet. Click "+ Add Subject" to create one.</td></tr>';
+                return;
+            }
+            tbody.innerHTML = subjects.map(s => `
+                <tr>
+                    <td><strong>${s.code}</strong></td>
+                    <td>${s.name}</td>
+                    <td><span class="badge-pill badge-success">${s.year_code || 'SE'}</span></td>
+                    <td><span class="badge-pill ${s.subject_type === 'practical' ? 'badge-warning' : 'badge-success'}">${s.subject_type || 'theory'}</span></td>
+                    <td>${s.weekly_theory_hours || 0} hrs</td>
+                    <td>${s.weekly_practical_hours || 0} hrs</td>
+                    <td>${s.preferred_room_type || 'Classroom'}</td>
+                    <td>
+                        <button class="btn btn-ghost btn-sm" onclick="openEditSubjectModal(${s.id})">✏️</button>
+                        <button class="btn btn-ghost btn-sm" onclick="confirmDeleteEntity('subject', ${s.id}, '${s.name}')">🗑️</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderWorkflowFaculty(faculty) {
+            const tbody = document.getElementById('wfFacultyTableBody');
+            if (!tbody) return;
+            if (!faculty || faculty.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--text-muted); padding: 1.5rem;">No faculty members added yet. Click "+ Add Faculty Member" to create one.</td></tr>';
+                return;
+            }
+            tbody.innerHTML = faculty.map(f => {
+                const subNames = (f.assignments || []).map(a => a.subject_code || a.subject_name).join(', ') || f.notes || 'General';
+                return `
+                    <tr>
+                        <td><strong>${f.initials}</strong></td>
+                        <td>${f.name}</td>
+                        <td>${f.designation || 'Assistant Professor'}</td>
+                        <td><span class="badge-pill badge-success">Slot ${f.time_slot || 'C'}</span></td>
+                        <td>${f.max_hours_per_week || 18} hrs</td>
+                        <td><span style="font-size: 0.78rem; color: var(--text-secondary);">${subNames}</span></td>
+                        <td>
+                            <button class="btn btn-ghost btn-sm" onclick="openEditFacultyModal(${f.id})">✏️</button>
+                            <button class="btn btn-ghost btn-sm" onclick="confirmDeleteEntity('faculty', ${f.id}, '${f.name}')">🗑️</button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function renderWorkflowRooms(rooms) {
+            const tbody = document.getElementById('wfRoomsTableBody');
+            if (!tbody) return;
+            if (!rooms || rooms.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--text-muted); padding: 1.5rem;">No rooms added yet. Click "+ Add Room / Lab" to create one.</td></tr>';
+                return;
+            }
+            tbody.innerHTML = rooms.map(r => `
+                <tr>
+                    <td><strong>${r.room_number}</strong></td>
+                    <td>${r.name}</td>
+                    <td><span class="badge-pill ${r.room_type === 'laboratory' ? 'badge-warning' : 'badge-success'}">${r.room_type}</span></td>
+                    <td>${r.capacity} seats</td>
+                    <td>${r.building || 'Main Block'} / Fl ${r.floor_number ?? 1}</td>
+                    <td>${r.has_projector ? '📽️ Proj ' : ''}${r.has_ac ? '❄️ AC' : ''}</td>
+                    <td>
+                        <button class="btn btn-ghost btn-sm" onclick="openEditRoomModal(${r.id})">✏️</button>
+                        <button class="btn btn-ghost btn-sm" onclick="confirmDeleteEntity('room', ${r.id}, '${r.name}')">🗑️</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function goToWorkflowStep(stepNum) {
+            document.querySelectorAll('.workflow-step').forEach(s => s.classList.remove('active'));
+            const targetStep = document.getElementById('wfStep-' + stepNum);
+            if (targetStep) targetStep.classList.add('active');
+
+            // Update stepper navigation
+            for (let i = 1; i <= 7; i++) {
+                const item = document.getElementById('stepItem-' + i);
+                if (item) {
+                    item.classList.remove('active', 'completed');
+                    if (i === stepNum) item.classList.add('active');
+                    else if (i < stepNum) item.classList.add('completed');
+                }
+            }
+            if (stepNum === 7) updateWorkflowReviewSummary();
+            const stepper = document.getElementById('workflowStepper');
+            if (stepper) stepper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function nextWorkflowStep(currentStep) {
+            if (currentStep === 1) {
+                const name = document.getElementById('wfCollegeName')?.value.trim();
+                if (!name) {
+                    showToast("Please enter a College / University name.", "error");
+                    return;
+                }
+            }
+            goToWorkflowStep(currentStep + 1);
+        }
+
+        function prevWorkflowStep(currentStep) {
+            goToWorkflowStep(Math.max(1, currentStep - 1));
+        }
+
+        function updateWorkflowReviewSummary() {
+            const classCount = (workflowState.classes || []).length || 3;
+            const subjectCount = (workflowState.subjects || []).length || 16;
+            const facultyCount = (workflowState.faculty || []).length || 16;
+            const roomCount = (workflowState.classrooms || []).length || 11;
+
+            if (document.getElementById('wfRevClassCount')) document.getElementById('wfRevClassCount').textContent = classCount;
+            if (document.getElementById('wfRevSubjectCount')) document.getElementById('wfRevSubjectCount').textContent = subjectCount;
+            if (document.getElementById('wfRevFacultyCount')) document.getElementById('wfRevFacultyCount').textContent = facultyCount;
+            if (document.getElementById('wfRevRoomCount')) document.getElementById('wfRevRoomCount').textContent = roomCount;
+
+            const college = document.getElementById('wfCollegeName')?.value || 'Slotify Institute of Technology';
+            const dept = document.getElementById('wfDepartment')?.value || 'Computer Science & Engineering';
+            const sess = document.getElementById('wfAcademicYear')?.value || '2026–2027';
+            const sem = document.getElementById('wfSemester')?.value || 'Odd Semester';
+            const start = document.getElementById('wfStartTime')?.value || '09:45';
+            const end = document.getElementById('wfEndTime')?.value || '16:15';
+            const lunch = document.getElementById('wfLunchStart')?.value || '13:45';
+            const lunchDur = document.getElementById('wfLunchDuration')?.value || '30';
+
+            const summaryEl = document.getElementById('wfRevSetupSummary');
+            if (summaryEl) {
+                summaryEl.innerHTML = `
+                    <p><strong>Institution:</strong> ${college}</p>
+                    <p><strong>Department:</strong> ${dept} (${sess}, ${sem})</p>
+                    <p><strong>Operating Hours:</strong> ${start} – ${end}</p>
+                    <p><strong>Protected Lunch Break:</strong> ${lunch} (${lunchDur} minutes)</p>
+                    <p><strong>Working Days:</strong> Monday – Saturday (6 Days)</p>
+                `;
+            }
+        }
+
+        async function runWorkflowGenerate() {
+            showToast("Running CSP constraint solver across all cohorts...", "info");
+            const payload = {
+                academic_setup: {
+                    college_name: document.getElementById('wfCollegeName')?.value || '',
+                    department: document.getElementById('wfDepartment')?.value || '',
+                    academic_year: document.getElementById('wfAcademicYear')?.value || '',
+                    semester: document.getElementById('wfSemester')?.value || '',
+                    start_time: document.getElementById('wfStartTime')?.value || '09:45',
+                    end_time: document.getElementById('wfEndTime')?.value || '16:15',
+                    theory_duration: parseInt(document.getElementById('wfTheoryDuration')?.value || '60'),
+                    practical_duration: parseInt(document.getElementById('wfPracticalDuration')?.value || '120'),
+                    lunch_break_time: document.getElementById('wfLunchStart')?.value || '13:45',
+                    lunch_break_duration: parseInt(document.getElementById('wfLunchDuration')?.value || '30'),
+                    max_lectures_per_day: parseInt(document.getElementById('wfMaxLecturesDay')?.value || '6'),
+                    max_faculty_weekly_hours: parseInt(document.getElementById('wfMaxFacultyWeekly')?.value || '24')
+                }
+            };
+
+            try {
+                const res = await fetch('/api/workflow/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    activeTimetableData = json.data;
+                    await refreshAllData();
+                    switchModule('timetables');
+                    showToast(`✨ Generated conflict-free schedule (${json.summary.total_sessions} sessions, 0 hard errors)!`, "success");
+                } else {
+                    showToast("Generation failed: " + (json.error || "Unable to solve constraints."), "error");
+                }
+            } catch (err) {
+                showToast("Generation error: " + err.message, "error");
+            }
+        }
+
+        // ═══════════════════════════════════════════
+        // ENTITY CRUD HANDLERS
+        // ═══════════════════════════════════════════
+        // Faculty CRUD
+        function openAddFacultyModal() {
+            document.getElementById('editFacultyId').value = '';
+            document.getElementById('addFacultyModalTitle').textContent = '➕ Add New Faculty Member';
+            document.getElementById('fmName').value = '';
+            document.getElementById('fmInitials').value = '';
+            document.getElementById('fmInitials').disabled = false;
+            document.getElementById('fmDepartment').value = 'Computer Engineering';
+            document.getElementById('fmTimeSlot').value = '1';
+            document.getElementById('fmMaxHours').value = '18';
+            document.getElementById('fmSubjects').value = '';
+            document.getElementById('addFacultyError').style.display = 'none';
+            openModal('addFacultyModal');
+        }
+
+        function openEditFacultyModal(id) {
+            const fac = (workflowState.faculty || facultyList || []).find(f => f.id === id);
+            if (!fac) return;
+            document.getElementById('editFacultyId').value = id;
+            document.getElementById('addFacultyModalTitle').textContent = `✏️ Edit Faculty — Prof. ${fac.initials}`;
+            document.getElementById('fmName').value = fac.name;
+            document.getElementById('fmInitials').value = fac.initials;
+            document.getElementById('fmInitials').disabled = true;
+            document.getElementById('fmDesignation').value = fac.designation || 'Assistant Professor';
+            document.getElementById('fmDepartment').value = fac.department_name || fac.department || 'Computer Engineering';
+            document.getElementById('fmTimeSlot').value = fac.time_slot || '1';
+            document.getElementById('fmMaxHours').value = fac.max_hours_per_week || 18;
+            document.getElementById('fmSubjects').value = (fac.assignments || []).map(a => a.subject_code).join(', ');
+            document.getElementById('addFacultyError').style.display = 'none';
+            openModal('addFacultyModal');
+        }
+
+        async function submitFacultyForm() {
+            const id = document.getElementById('editFacultyId').value;
+            const name = document.getElementById('fmName').value.trim();
+            const initials = document.getElementById('fmInitials').value.trim().toUpperCase();
+            if (!name || !initials) {
+                const errBox = document.getElementById('addFacultyError');
+                errBox.textContent = 'Name and Initials are required.';
+                errBox.style.display = 'block';
+                return;
+            }
+
+            const data = {
+                name, initials,
+                designation: document.getElementById('fmDesignation').value,
+                department_id: 1,
+                time_slot: document.getElementById('fmTimeSlot').value,
+                max_hours_per_week: parseInt(document.getElementById('fmMaxHours').value) || 18,
+                notes: document.getElementById('fmSubjects').value.trim()
+            };
+
+            const url = id ? `/api/teachers/${id}` : '/api/teachers';
+            const method = id ? 'PUT' : 'POST';
+
+            try {
+                const res = await fetch(url, {
+                    method,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    closeModal('addFacultyModal');
+                    await refreshAllData();
+                    await loadWorkflowConfig();
+                    showToast(id ? 'Faculty updated successfully.' : 'Faculty added successfully.');
+                } else {
+                    const errBox = document.getElementById('addFacultyError');
+                    errBox.textContent = json.error || 'Failed to save faculty.';
+                    errBox.style.display = 'block';
+                }
+            } catch (err) {
+                showToast('Error saving faculty: ' + err.message, 'error');
+            }
+        }
+
+        // Room CRUD
+        function openAddRoomModal() {
+            document.getElementById('editRoomId').value = '';
+            document.getElementById('addRoomModalTitle').textContent = '➕ Add New Room / Lab';
+            document.getElementById('rmName').value = '';
+            document.getElementById('rmNumber').value = '';
+            document.getElementById('rmNumber').disabled = false;
+            document.getElementById('rmType').value = 'classroom';
+            document.getElementById('rmCapacity').value = '60';
+            document.getElementById('rmBuilding').value = 'Main Block';
+            document.getElementById('rmFloor').value = '3';
+            document.getElementById('rmHasAC').checked = false;
+            document.getElementById('rmHasProj').checked = true;
+            document.getElementById('addRoomError').style.display = 'none';
+            openModal('addRoomModal');
+        }
+
+        function openEditRoomModal(id) {
+            const rm = (workflowState.classrooms || roomsList || []).find(r => r.id === id);
+            if (!rm) return;
+            document.getElementById('editRoomId').value = id;
+            document.getElementById('addRoomModalTitle').textContent = `✏️ Edit Room ${rm.room_number}`;
+            document.getElementById('rmName').value = rm.name;
+            document.getElementById('rmNumber').value = rm.room_number;
+            document.getElementById('rmNumber').disabled = true;
+            document.getElementById('rmType').value = rm.room_type || 'classroom';
+            document.getElementById('rmCapacity').value = rm.capacity || 60;
+            document.getElementById('rmBuilding').value = rm.building || 'Main Block';
+            document.getElementById('rmFloor').value = rm.floor_number ?? 1;
+            document.getElementById('rmHasAC').checked = !!rm.has_ac;
+            document.getElementById('rmHasProj').checked = !!rm.has_projector;
+            document.getElementById('addRoomError').style.display = 'none';
+            openModal('addRoomModal');
+        }
+
+        async function submitRoomForm() {
+            const id = document.getElementById('editRoomId').value;
+            const name = document.getElementById('rmName').value.trim();
+            const room_number = document.getElementById('rmNumber').value.trim();
+            if (!name || !room_number) {
+                const errBox = document.getElementById('addRoomError');
+                errBox.textContent = 'Room name and number are required.';
+                errBox.style.display = 'block';
+                return;
+            }
+
+            const data = {
+                name, room_number,
+                room_type: document.getElementById('rmType').value,
+                capacity: parseInt(document.getElementById('rmCapacity').value) || 60,
+                building: document.getElementById('rmBuilding').value.trim(),
+                floor_number: parseInt(document.getElementById('rmFloor').value) || 1,
+                has_ac: document.getElementById('rmHasAC').checked ? 1 : 0,
+                has_projector: document.getElementById('rmHasProj').checked ? 1 : 0,
+            };
+
+            const url = id ? `/api/classrooms/${id}` : '/api/classrooms';
+            const method = id ? 'PUT' : 'POST';
+
+            try {
+                const res = await fetch(url, {
+                    method,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    closeModal('addRoomModal');
+                    await refreshAllData();
+                    await loadWorkflowConfig();
+                    showToast(id ? 'Room updated successfully.' : 'Room added successfully.');
+                } else {
+                    const errBox = document.getElementById('addRoomError');
+                    errBox.textContent = json.error || 'Failed to save room.';
+                    errBox.style.display = 'block';
+                }
+            } catch (err) {
+                showToast('Error saving room: ' + err.message, 'error');
+            }
+        }
+
+        // Subject CRUD
+        function openAddSubjectModal() {
+            document.getElementById('editSubId').value = '';
+            document.getElementById('addSubjectModalTitle').textContent = '➕ Add New Subject';
+            document.getElementById('subName').value = '';
+            document.getElementById('subCode').value = '';
+            document.getElementById('subCode').disabled = false;
+            document.getElementById('subYear').value = '1';
+            document.getElementById('subType').value = 'theory';
+            document.getElementById('subTheoryHours').value = '3';
+            document.getElementById('subPracticalHours').value = '0';
+            document.getElementById('subRoomPref').value = 'classroom';
+            document.getElementById('addSubError').style.display = 'none';
+            openModal('addSubjectModal');
+        }
+
+        function openEditSubjectModal(id) {
+            const sub = (workflowState.subjects || subjectsList || []).find(s => s.id === id);
+            if (!sub) return;
+            document.getElementById('editSubId').value = id;
+            document.getElementById('addSubjectModalTitle').textContent = `✏️ Edit Subject — ${sub.code}`;
+            document.getElementById('subName').value = sub.name;
+            document.getElementById('subCode').value = sub.code;
+            document.getElementById('subCode').disabled = true;
+            document.getElementById('subYear').value = sub.academic_year_id || '1';
+            document.getElementById('subType').value = sub.subject_type || 'theory';
+            document.getElementById('subTheoryHours').value = sub.weekly_theory_hours || 3;
+            document.getElementById('subPracticalHours').value = sub.weekly_practical_hours || 0;
+            document.getElementById('subRoomPref').value = sub.preferred_room_type || 'classroom';
+            document.getElementById('addSubError').style.display = 'none';
+            openModal('addSubjectModal');
+        }
+
+        async function submitSubjectForm() {
+            const id = document.getElementById('editSubId').value;
+            const name = document.getElementById('subName').value.trim();
+            const code = document.getElementById('subCode').value.trim().toUpperCase();
+            if (!name || !code) {
+                const errBox = document.getElementById('addSubError');
+                errBox.textContent = 'Subject name and code are required.';
+                errBox.style.display = 'block';
+                return;
+            }
+
+            const data = {
+                name, code,
+                academic_year_id: parseInt(document.getElementById('subYear').value) || 1,
+                subject_type: document.getElementById('subType').value,
+                weekly_theory_hours: parseInt(document.getElementById('subTheoryHours').value) || 0,
+                weekly_practical_hours: parseInt(document.getElementById('subPracticalHours').value) || 0,
+                preferred_room_type: document.getElementById('subRoomPref').value
+            };
+
+            const url = id ? `/api/subjects/${id}` : '/api/subjects';
+            const method = id ? 'PUT' : 'POST';
+
+            try {
+                const res = await fetch(url, {
+                    method,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    closeModal('addSubjectModal');
+                    await refreshAllData();
+                    await loadWorkflowConfig();
+                    showToast(id ? 'Subject updated successfully.' : 'Subject added successfully.');
+                } else {
+                    const errBox = document.getElementById('addSubError');
+                    errBox.textContent = json.error || 'Failed to save subject.';
+                    errBox.style.display = 'block';
+                }
+            } catch (err) {
+                showToast('Error saving subject: ' + err.message, 'error');
+            }
+        }
+
+        // Class / Division CRUD
+        function openAddClassModal() {
+            document.getElementById('editClassId').value = '';
+            document.getElementById('cmDivisionName').value = 'Division A';
+            document.getElementById('cmStrength').value = '60';
+            document.getElementById('cmBatchCount').value = '3';
+            document.getElementById('addClassError').style.display = 'none';
+            openModal('addClassModal');
+        }
+
+        async function submitClassForm() {
+            const name = document.getElementById('cmDivisionName').value.trim();
+            const yearId = parseInt(document.getElementById('cmYearId').value) || 1;
+            const student_count = parseInt(document.getElementById('cmStrength').value) || 60;
+            const batch_count = parseInt(document.getElementById('cmBatchCount').value) || 3;
+
+            if (!name) {
+                const errBox = document.getElementById('addClassError');
+                errBox.textContent = 'Division name is required.';
+                errBox.style.display = 'block';
+                return;
+            }
+
+            try {
+                const res = await fetch('/api/divisions', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, academic_year_id: yearId, student_count, batch_count })
+                });
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    closeModal('addClassModal');
+                    await loadWorkflowConfig();
+                    showToast('Class / Division added successfully.');
+                } else {
+                    const errBox = document.getElementById('addClassError');
+                    errBox.textContent = json.error || 'Failed to add class.';
+                    errBox.style.display = 'block';
+                }
+            } catch (err) {
+                showToast('Error adding class: ' + err.message, 'error');
+            }
+        }
+
+        // Delete Confirmation
+        let pendingDelete = null;
+        function confirmDeleteEntity(type, id, name) {
+            pendingDelete = { type, id, name };
+            document.getElementById('deleteConfirmMsg').textContent = `Are you sure you want to delete ${type.toUpperCase()}: "${name}"?`;
+            openModal('confirmDeleteModal');
+        }
+
+        async function executeConfirmedDelete() {
+            if (!pendingDelete) return;
+            const { type, id } = pendingDelete;
+            closeModal('confirmDeleteModal');
+
+            let endpoint = '';
+            if (type === 'faculty') endpoint = `/api/teachers/${id}`;
+            else if (type === 'room') endpoint = `/api/classrooms/${id}`;
+            else if (type === 'subject') endpoint = `/api/subjects/${id}`;
+            else if (type === 'division') endpoint = `/api/divisions/${id}`;
+            else return;
+
+            try {
+                const res = await fetch(endpoint, { method: 'DELETE' });
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    await refreshAllData();
+                    await loadWorkflowConfig();
+                    showToast(`Deleted ${type} successfully.`);
+                } else {
+                    showToast(`Delete failed: ${json.error || 'Unknown error'}`, 'error');
+                }
+            } catch (err) {
+                showToast(`Delete error: ${err.message}`, 'error');
+            }
+            pendingDelete = null;
+        }
+
+        // Toggle Lock Slot
+        async function toggleLockSlot(year, day, slotId) {
+            try {
+                const res = await fetch('/api/timetables/toggle_lock', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ year, day, slot_id: slotId })
+                });
+                const json = await res.json();
+                if (json.status === 'ok') {
+                    await loadCurrentTimetable();
+                    showToast(json.is_locked ? "🔒 Session locked in place." : "🔓 Session unlocked.");
+                }
+            } catch (err) {
+                showToast("Lock toggle error: " + err.message, "error");
             }
         }
 
